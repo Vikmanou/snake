@@ -1,0 +1,47 @@
+plugins {
+    id 'java-library'
+    id 'ntro-deps'
+}
+
+project.group = 'ca.ntro'
+project.version = '0.1'
+
+
+class LocalJavaPluginExtension implements Serializable {
+   List<String> modules = []
+}
+
+def extension = project.extensions.create('localJavaPlugin', LocalJavaPluginExtension) 
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    // MODULES
+    //modularity.inferModulePath = true
+    [compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters', '-Xlint:none']
+}
+
+tasks.withType(Copy) {
+   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Jar) {
+   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(JavaExec) {
+   classpath = sourceSets.main.runtimeClasspath
+   standardInput = System.in
+   jvmArgs('-Dfile.encoding=UTF-8')
+   jvmArgs("-Duser.dir=${projectDir}")
+}
+
+tasks.withType(JavaCompile){
+   options.encoding = 'UTF-8'
+}
+
+javadoc {
+    options.addStringOption("--frames")
+    options.encoding = 'UTF-8'
+    options.windowTitle = "${project.name}"
+}

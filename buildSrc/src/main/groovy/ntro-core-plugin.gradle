@@ -1,0 +1,13 @@
+plugins{
+    id 'ntro-java'
+    id 'ntro-eclipse'
+    id 'ntro-deps'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+
+

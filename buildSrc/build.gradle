@@ -1,0 +1,35 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+gradlePlugin {
+    plugins {
+        NtroEclipse {
+            id = 'ntro-eclipse'
+            implementationClass = 'NtroEclipsePluginPlugin'
+        }
+        NtroDeps {
+            id = 'ntro-deps'
+            implementationClass = 'NtroDepsPluginPlugin'
+        }
+        NtroJava {
+            id = 'ntro-java'
+            implementationClass = 'NtroJavaPluginPlugin'
+        }
+        NtroFx {
+            id = 'ntro-fx'
+            implementationClass = 'NtroFxPluginPlugin'
+        }
+        NtroCore {
+            id = 'ntro-core'
+            implementationClass = 'NtroCorePluginPlugin'
+        }
+        NtroProject {
+            id = 'ntro-project'
+            implementationClass = 'NtroProjectPluginPlugin'
+        }
+    }
+}
+
+
+

@@ -1,0 +1,152 @@
+plugins{
+    id 'ntro-java'
+    id 'ntro-core'
+    id 'ntro-fx'
+}
+
+public class NtroProjectPluginExtension implements Serializable {
+   String       ntroDepType = "libs"
+   List<String> localDependencies = []
+   String       appClass = null
+   String       clientClass = null
+   String       serverClass = null
+   List<String> users = []
+}
+
+def extension = project.extensions.create('ntroProject', NtroProjectPluginExtension)
+
+project.gradle.projectsEvaluated {
+    dependencies {
+
+        extension.localDependencies.forEach{dep -> 
+            implementation project(":${dep}")
+        }
+
+        if(extension.ntroDepType.equals("libs")){
+            ntroDependencies.split(',').each {
+                implementation files("../libs/${it}-${version}.jar")
+            }
+
+        }else {
+            ntroDependencies.split(',').each {
+                implementation(project(":ntro_${it}"))
+            }
+        }
+    }
+
+    def configCommune = {
+       classpath = sourceSets.main.runtimeClasspath
+       standardInput = System.in
+       jvmArgs('-Dfile.encoding=UTF-8')
+    }
+
+    if(extension.appClass != null){
+
+        def configApp = {
+           configure configCommune
+           mainClass = extension.appClass
+           jvmArgs('-Dsun.java2d.opengl=true')
+        }
+
+        task(project.name, dependsOn: 'classes', type: JavaExec) {
+           configure configApp
+        }
+
+        if(extension.users != null 
+           && extension.users.size() > 0) {
+
+            extension.users.forEach{uname -> 
+                if(uname instanceof String && uname.length() > 0) {
+
+                    def Uname = uname.substring(0,1).toUpperCase() + uname.substring(1);
+
+                    task("${project.name}${Uname}", dependsOn: 'classes', type: JavaExec) {
+                       configure configApp
+                       args("session=${uname}")
+                    }
+                }
+            }
+           }
+
+    }else{
+
+        task(project.name) {
+            doLast{
+
+                System.err.println("")
+                System.err.println("[ERREUR] il faut définir ntroProject.appClass")
+                System.err.println("")
+
+            }
+        }
+
+    }
+
+    if(extension.serverClass != null){
+
+        def configServeur = {
+           configure configCommune
+           mainClass = extension.serverClass
+        }
+
+        task("${project.name}Serveur", dependsOn: 'classes', type: JavaExec) {
+           configure configServeur
+        }
+
+    }else{
+
+        task("${project.name}Serveur") {
+            doLast{
+
+                System.err.println("")
+                System.err.println("[ERREUR] il faut définir ntroProject.serverClass")
+                System.err.println("")
+
+            }
+        }
+    }
+
+    if(extension.clientClass != null){
+
+        def configClient = {
+           configure configCommune
+           mainClass = extension.clientClass
+           jvmArgs('-Dsun.java2d.opengl=true')
+        }
+
+
+        task("${project.name}Client", dependsOn: 'classes', type: JavaExec) {
+           configure configClient
+        }
+
+        if(extension.users != null 
+           && extension.users.size() > 0) {
+
+            extension.users.forEach{uname -> 
+                if(uname instanceof String && uname.length() > 0) {
+
+                    def Uname = uname.substring(0,1).toUpperCase() + uname.substring(1);
+
+                    task("${project.name}Client${Uname}", dependsOn: 'classes', type: JavaExec) {
+                       configure configClient
+                       args("session=${uname}")
+                    }
+                }
+            }
+           }
+
+
+    }else{
+
+        task("${project.name}Client") {
+            doLast{
+
+                System.err.println("")
+                System.err.println("[ERREUR] il faut définir ntroProject.clientClass")
+                System.err.println("")
+
+            }
+        }
+    }
+
+}
