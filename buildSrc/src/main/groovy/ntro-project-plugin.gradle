@@ -10,10 +10,20 @@ public class NtroProjectPluginExtension implements Serializable {
    String       appClass = null
    String       clientClass = null
    String       serverClass = null
+   List<String> languages = []
    List<String> users = []
 }
 
 def extension = project.extensions.create('ntroProject', NtroProjectPluginExtension)
+
+try {
+    if(ntroSource != null && ntroSource.equals("project")){
+        extension.ntroDepType = "project"
+    }
+}catch(MissingPropertyException e){
+    extension.ntroDepType = "libs"
+}
+
 
 project.gradle.projectsEvaluated {
     dependencies {
@@ -51,6 +61,25 @@ project.gradle.projectsEvaluated {
         task(project.name, dependsOn: 'classes', type: JavaExec) {
            configure configApp
         }
+
+        if(extension.languages != null 
+           && extension.languages.size() > 0) {
+
+            extension.languages.forEach{lang -> 
+                if(lang instanceof String && lang.length() > 0) {
+
+                    def Lang = lang.substring(0,1).toUpperCase() + lang.substring(1);
+
+                    task("${project.name}${Lang}", dependsOn: 'classes', type: JavaExec) {
+                       configure configApp
+                       jvmArgs("-Duser.language=${lang}")
+                       args("language=${lang}")
+                    }
+
+                }
+            }
+       }
+
 
         if(extension.users != null 
            && extension.users.size() > 0) {
