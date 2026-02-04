@@ -1,5 +1,5 @@
 {
-    "chat.disableAIFeatures": true,
+    "chat.disableAIFeatures": false,
     "update.mode": "none",
     "update.showReleaseNotes": false,
     "update.enableWindowsBackgroundUpdates": false,
