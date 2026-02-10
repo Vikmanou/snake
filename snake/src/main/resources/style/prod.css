@@ -1,0 +1,45 @@
+.conteneur {
+  -fx-background-color: black;
+}
+
+.center {
+  -fx-alignment: center;
+}
+
+#conteneur-racine {
+  -fx-font-size: 14px;
+  -fx-alignment: center;
+  -fx-spacing: 20;
+  -fx-padding: 40;
+}
+
+.label {
+  -fx-text-fill: white;
+  -fx-font-size: 28px;
+  -fx-font-weight: bold;
+  -fx-alignment: top-center;
+}
+
+.button {
+  -fx-background-color: #4CAF50;
+  -fx-text-fill: white;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-padding: 10 20;
+  -fx-cursor: hand;
+}
+
+.button:hover {
+  -fx-background-color: #45a049;
+}
+
+.petit {
+  -fx-min-height: 2em;
+  -fx-min-width: 2em;
+}
+
+.moyen {
+  -fx-min-height: 4em;
+  -fx-min-width: 4em;
+}
+

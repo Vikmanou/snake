@@ -3,3 +3,4 @@ plugins {
 }
 
 ntroProject.appClass = "snake.AppSnake"
+ntroProject.languages = ["fr","en"]

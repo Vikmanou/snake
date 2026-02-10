@@ -25,7 +25,7 @@ public class AppSnake implements NtroAppFx {
 
     @Override
     public void registerFrontend(FrontendRegistrarFx registrar) {
-
+        registrar.registerFrontend(FrontalSnake.class);
     }
 
     @Override
