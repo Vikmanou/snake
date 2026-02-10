@@ -179,3 +179,28 @@ project.gradle.projectsEvaluated {
     }
 
 }
+
+task saveJson {
+    doLast {
+        println("")
+        println("")
+        println("[INFO] saving $projectDir/_storage/models")
+        copy {
+            from "$projectDir/_storage/models"
+            into "$projectDir/json/models"
+        }
+    }
+}
+
+task restoreJson {
+    doLast {
+        println("")
+        println("")
+        println("[INFO] restoring models")
+        copy {
+            from "$projectDir/json/models"
+            into "$projectDir/_storage/models"
+        }
+    }
+}
+
