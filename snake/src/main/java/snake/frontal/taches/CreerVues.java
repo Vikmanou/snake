@@ -2,7 +2,7 @@ package snake.frontal.taches;
 
 import ca.ntro.app.tasks.frontend.FrontendTasks;
 import javafx.stage.Window;
-import snake.frontal.vues.VuePage;
+import snake.frontal.vues.VueBoutique;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
 
@@ -22,14 +22,14 @@ public class CreerVues {
 
     private static void creerVuePage(FrontendTasks subTasks) {
 
-        subTasks.task(create(VuePage.class))
+        subTasks.task(create(VueBoutique.class))
 
-                .waitsFor(viewLoader(VuePage.class))
+                .waitsFor(viewLoader(VueBoutique.class))
 
                 .executesAndReturnsValue(inputs -> {
 
-                    var viewLoader = inputs.get(viewLoader(VuePage.class));
-                    VuePage vuePage = viewLoader.createView();
+                    var viewLoader = inputs.get(viewLoader(VueBoutique.class));
+                    VueBoutique vuePage = viewLoader.createView();
 
                     return vuePage;
                 });

@@ -1,7 +1,7 @@
 package snake.frontal.taches;
 
 import ca.ntro.app.tasks.frontend.FrontendTasks;
-import snake.frontal.vues.VuePage;
+import snake.frontal.vues.VueBoutique;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
 
@@ -20,11 +20,11 @@ public class AffichagePage {
 
                 .waitsFor(window())
 
-                .waitsFor(created(VuePage.class))
+                .waitsFor(created(VueBoutique.class))
 
                 .executes(inputs -> {
 
-                    VuePage vuePage = inputs.get(created(VuePage.class));
+                    VueBoutique vuePage = inputs.get(created(VueBoutique.class));
                     ca.ntro.app.services.Window window = inputs.get(window());
 
                     window.installRootView(vuePage);

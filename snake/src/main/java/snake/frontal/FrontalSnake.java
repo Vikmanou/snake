@@ -8,7 +8,7 @@ import ca.ntro.app.session.SessionRegistrar;
 import ca.ntro.app.tasks.frontend.FrontendTasks;
 import snake.frontal.taches.AffichagePage;
 import snake.frontal.taches.CreerVues;
-import snake.frontal.vues.VuePage;
+import snake.frontal.vues.VueBoutique;
 
 public class FrontalSnake implements FrontendFx {
 
@@ -34,7 +34,7 @@ public class FrontalSnake implements FrontendFx {
         registrar.registerTranslations(Ntro.buildLocale("fr"), "/traductions/fr.properties");
         registrar.registerTranslations(Ntro.buildLocale("en"), "/traductions/en.properties");
 
-        registrar.registerView(VuePage.class, "/vues/page.fxml");
+        registrar.registerView(VueBoutique.class, "/vues/boutique.fxml");
 
         registrar.registerStylesheet("/style/prod.css");
     }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.* ?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+    fx:controller="snake.frontal.vues.VueBoutique"
+    styleClass="conteneur,v,top">
+
+    <HBox styleClass="conteneur,h,center">
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label text="%titre" styleClass="titre"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label text="\$000" styleClass="argent"/>
+        <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="30">
+            <image>
+                <Image url="@/images/argent.png"/>
+            </image>
+        </ImageView>
+    </HBox>
+
+    <Pane styleClass="espacement,moyen"/>
+
+    <VBox styleClass="conteneur,v,top-left">
+        <Label text="Fruits" styleClass="categorie"/>
+
+        <Pane styleClass="espacement petit"/>
+
+        <HBox styleClass="conteneur,h,top-left">
+            <VBox styleClass="conteneur,v,center,item-boutique">
+                <Label text="Pomme" styleClass="titre-item"/>
+                <Label text="x$" styleClass="prix"/>
+                <Button text="Acheter" styleClass="bouton"/>
+            </VBox>
+
+            <Pane styleClass="espacement petit"/>
+
+            <VBox styleClass="conteneur,v,center,item-boutique">
+                <Label text="Banane" styleClass="titre-item"/>
+                <Label text="x$" styleClass="prix"/>
+                <Button text="Acheter" styleClass="bouton"/>
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+</VBox>
+
