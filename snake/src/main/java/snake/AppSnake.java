@@ -6,6 +6,8 @@ import ca.ntro.app.frontend.FrontendRegistrarFx;
 import ca.ntro.app.messages.MessageRegistrar;
 import ca.ntro.app.models.ModelRegistrar;
 import snake.frontal.FrontalSnake;
+import snake.commun.modeles.ModeleBoutique;
+import snake.commun.valeurs.Fruit;
 
 public class AppSnake implements NtroAppFx {
 
@@ -15,7 +17,8 @@ public class AppSnake implements NtroAppFx {
 
     @Override
     public void registerModels(ModelRegistrar registrar) {
-
+        registrar.registerModel(ModeleBoutique.class);
+        registrar.registerValue(Fruit.class);
     }
 
     @Override
