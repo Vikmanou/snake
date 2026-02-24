@@ -10,10 +10,11 @@
     styleClass="conteneur,v,top">
 
     <HBox styleClass="conteneur,h,center">
+        <Button fx:id="boutonRetourMenu" text="%retourMenu" styleClass="bouton"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <Label text="%titre" styleClass="titre"/>
         <Pane HBox.hgrow="ALWAYS"/>
-        <Label text="\$000" styleClass="argent"/>
+        <Label fx:id="labelArgent" text="\$000" styleClass="argent"/>
         <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="30">
             <image>
                 <Image url="@/images/argent.png"/>

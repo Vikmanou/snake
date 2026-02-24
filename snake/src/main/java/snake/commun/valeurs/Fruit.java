@@ -9,4 +9,8 @@ public class Fruit implements ModelValue {
     private String image;
     private boolean montrerDansLaBoutique;
 
+    @Override
+    public String toString() {
+        return nom;
+    }
 }

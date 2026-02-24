@@ -6,21 +6,24 @@ import ca.ntro.app.frontend.FrontendFx;
 import ca.ntro.app.frontend.ViewRegistrarFx;
 import ca.ntro.app.session.SessionRegistrar;
 import ca.ntro.app.tasks.frontend.FrontendTasks;
-import snake.frontal.taches.AffichagePage;
-import snake.frontal.taches.CreerVues;
-import snake.frontal.vues.VueBoutique;
+import snake.frontal.taches.*;
+import snake.frontal.vues.*;
+import snake.frontal.evenements.*;
 
 public class FrontalSnake implements FrontendFx {
 
     @Override
     public void createTasks(FrontendTasks tasks) {
         CreerVues.creerTaches(tasks);
-        AffichagePage.creerTaches(tasks);
+        PremierAffichage.creerTaches(tasks);
+        Navigation.creerTaches(tasks);
+        GererArgent.creerTaches(tasks);
     }
 
     @Override
     public void registerEvents(EventRegistrar registrar) {
-
+        registrar.registerEvent(EvtAfficherVueAccueil.class);
+        registrar.registerEvent(EvtAfficherVueBoutique.class);
     }
 
     @Override
@@ -34,9 +37,10 @@ public class FrontalSnake implements FrontendFx {
         registrar.registerTranslations(Ntro.buildLocale("fr"), "/traductions/fr.properties");
         registrar.registerTranslations(Ntro.buildLocale("en"), "/traductions/en.properties");
 
+        registrar.registerView(VueRacine.class, "/vues/racine.fxml");
         registrar.registerView(VueBoutique.class, "/vues/boutique.fxml");
+        registrar.registerView(VueAccueil.class, "/vues/accueil.fxml");
 
         registrar.registerStylesheet("/style/prod.css");
     }
-
 }

@@ -2,9 +2,11 @@ package snake.frontal.taches;
 
 import ca.ntro.app.tasks.frontend.FrontendTasks;
 import javafx.stage.Window;
-import snake.frontal.vues.VueBoutique;
+import snake.frontal.vues.*;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
+
+import ca.ntro.app.frontend.ViewLoader;
 
 public class CreerVues {
     public static void creerTaches(FrontendTasks tasks) {
@@ -15,23 +17,43 @@ public class CreerVues {
 
                 .contains(subTasks -> {
 
-                    creerVuePage(subTasks);
+                    creerVueBoutique(subTasks);
+                    creerVueAccueil(subTasks);
+                    creerVueRacine(subTasks);
 
                 });
     }
 
-    private static void creerVuePage(FrontendTasks subTasks) {
-
+    private static void creerVueBoutique(FrontendTasks subTasks) {
         subTasks.task(create(VueBoutique.class))
-
                 .waitsFor(viewLoader(VueBoutique.class))
-
                 .executesAndReturnsValue(inputs -> {
+                    ViewLoader<VueBoutique> viewLoader = inputs.get(viewLoader(VueBoutique.class));
+                    VueBoutique vueBoutique = viewLoader.createView();
 
-                    var viewLoader = inputs.get(viewLoader(VueBoutique.class));
-                    VueBoutique vuePage = viewLoader.createView();
+                    return vueBoutique;
+                });
+    }
 
-                    return vuePage;
+    private static void creerVueAccueil(FrontendTasks subTasks) {
+        subTasks.task(create(VueAccueil.class))
+                .waitsFor(viewLoader(VueAccueil.class))
+                .executesAndReturnsValue(inputs -> {
+                    ViewLoader<VueAccueil> viewLoader = inputs.get(viewLoader(VueAccueil.class));
+                    VueAccueil vueAccueil = viewLoader.createView();
+
+                    return vueAccueil;
+                });
+    }
+
+    private static void creerVueRacine(FrontendTasks subTasks) {
+        subTasks.task(create(VueRacine.class))
+                .waitsFor(viewLoader(VueRacine.class))
+                .executesAndReturnsValue(inputs -> {
+                    ViewLoader<VueRacine> viewLoader = inputs.get(viewLoader(VueRacine.class));
+                    VueRacine vueRacine = viewLoader.createView();
+
+                    return vueRacine;
                 });
     }
 }
