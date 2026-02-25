@@ -1,5 +1,5 @@
 {
-    "chat.disableAIFeatures": false,
+    "chat.disableAIFeatures": true,
     "update.mode": "none",
     "update.showReleaseNotes": false,
     "update.enableWindowsBackgroundUpdates": false,
@@ -43,6 +43,5 @@
 	    "scripts" : true,
 	    "vscode.sh" : true,
 	    "*.swp" : true
-	},
-	"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }
