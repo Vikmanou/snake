@@ -16,4 +16,8 @@ public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
     public void setArgent(VueBoutique vueBoutique) {
         vueBoutique.setArgent(this.argent);
     }
+
+    public void ajouterArgent(int montant) {
+        this.argent += montant;
+    }
 }
