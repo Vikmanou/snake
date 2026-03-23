@@ -6,11 +6,29 @@ public class Fruit implements ModelValue {
     private String nom;
     private int prix;
     private int ordreDansBoutique;
-    private String image;
     private boolean montrerDansLaBoutique;
+
+    public Fruit(String nom, int prix, int ordreDansBoutique, boolean montrerDansLaBoutique) {
+        this.nom = nom;
+        this.prix = prix;
+        this.ordreDansBoutique = ordreDansBoutique;
+        this.montrerDansLaBoutique = montrerDansLaBoutique;
+    }
 
     @Override
     public String toString() {
         return nom;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public boolean getMontrerDansLaBoutique() {
+        return montrerDansLaBoutique;
     }
 }

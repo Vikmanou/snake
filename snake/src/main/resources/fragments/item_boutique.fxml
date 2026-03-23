@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.* ?>
+<?import javafx.scene.control.* ?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="snake.frontal.fragments.ItemBoutique" styleClass="conteneur,v,center,item-boutique">
+    <Label fx:id="nomFruit" text="Pomme" styleClass="titre-item"/>
+    <Label fx:id="prixFruit" text="x$" styleClass="prix"/>
+    <Button fx:id="boutonAcheter" text="Acheter" styleClass="bouton"/>
+</VBox>

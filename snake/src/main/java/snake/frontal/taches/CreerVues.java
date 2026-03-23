@@ -3,6 +3,7 @@ package snake.frontal.taches;
 import ca.ntro.app.tasks.frontend.FrontendTasks;
 import javafx.stage.Window;
 import snake.frontal.vues.*;
+import snake.frontal.fragments.*;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
 
@@ -27,9 +28,13 @@ public class CreerVues {
     private static void creerVueBoutique(FrontendTasks subTasks) {
         subTasks.task(create(VueBoutique.class))
                 .waitsFor(viewLoader(VueBoutique.class))
+                .waitsFor(viewLoader(ItemBoutique.class))
                 .executesAndReturnsValue(inputs -> {
                     ViewLoader<VueBoutique> viewLoader = inputs.get(viewLoader(VueBoutique.class));
+                    ViewLoader<ItemBoutique> itemLoader = inputs.get(viewLoader(ItemBoutique.class));
+
                     VueBoutique vueBoutique = viewLoader.createView();
+                    vueBoutique.setItemBoutiqueViewLoader(itemLoader);
 
                     return vueBoutique;
                 });

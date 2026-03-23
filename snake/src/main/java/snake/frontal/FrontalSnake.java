@@ -9,6 +9,7 @@ import ca.ntro.app.tasks.frontend.FrontendTasks;
 import snake.frontal.taches.*;
 import snake.frontal.vues.*;
 import snake.frontal.evenements.*;
+import snake.frontal.fragments.*;
 
 public class FrontalSnake implements FrontendFx {
 
@@ -18,6 +19,7 @@ public class FrontalSnake implements FrontendFx {
         PremierAffichage.creerTaches(tasks);
         Navigation.creerTaches(tasks);
         GererArgent.creerTaches(tasks);
+        AfficherItemsBoutique.creerTaches(tasks);
     }
 
     @Override
@@ -38,7 +40,10 @@ public class FrontalSnake implements FrontendFx {
         registrar.registerTranslations(Ntro.buildLocale("en"), "/traductions/en.properties");
 
         registrar.registerView(VueRacine.class, "/vues/racine.fxml");
+
         registrar.registerView(VueBoutique.class, "/vues/boutique.fxml");
+        registrar.registerFragment(ItemBoutique.class, "/fragments/item_boutique.fxml");
+
         registrar.registerView(VueAccueil.class, "/vues/accueil.fxml");
 
         registrar.registerStylesheet("/style/prod.css");

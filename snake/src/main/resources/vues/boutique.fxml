@@ -29,20 +29,8 @@
 
         <Pane styleClass="espacement petit"/>
 
-        <HBox styleClass="conteneur,h,top-left" Hbox.hgrow="ALWAYS">
-            <VBox styleClass="conteneur,v,center,item-boutique">
-                <Label text="Pomme" styleClass="titre-item"/>
-                <Label text="x$" styleClass="prix"/>
-                <Button fx:id="boutonAcheter" text="Acheter" styleClass="bouton"/>
-            </VBox>
-
-            <Pane styleClass="espacement petit"/>
-
-            <VBox styleClass="conteneur,v,center,item-boutique">
-                <Label text="Banane" styleClass="titre-item"/>
-                <Label text="x$" styleClass="prix"/>
-                <Button fx:id="boutonAcheter" text="Acheter" styleClass="bouton"/>
-            </VBox>
+        <HBox styleClass="conteneur,h,top-left" fx:id="conteneurFruits">
+           
         </HBox>
 
     </VBox>
