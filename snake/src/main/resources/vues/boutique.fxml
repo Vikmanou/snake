@@ -29,7 +29,7 @@
 
         <Pane styleClass="espacement petit"/>
 
-        <HBox styleClass="conteneur,h,top-left">
+        <HBox styleClass="conteneur,h,top-left" Hbox.hgrow="ALWAYS">
             <VBox styleClass="conteneur,v,center,item-boutique">
                 <Label text="Pomme" styleClass="titre-item"/>
                 <Label text="x$" styleClass="prix"/>
