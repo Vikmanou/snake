@@ -29,9 +29,7 @@
 
         <Pane styleClass="espacement petit"/>
 
-        <HBox styleClass="conteneur,h,top-left" fx:id="conteneurFruits">
-           
-        </HBox>
+        <HBox styleClass="conteneur,h,top-left" fx:id="conteneurFruits"/>
 
     </VBox>
 
