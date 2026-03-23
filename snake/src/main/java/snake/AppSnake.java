@@ -5,9 +5,11 @@ import ca.ntro.app.backend.BackendRegistrar;
 import ca.ntro.app.frontend.FrontendRegistrarFx;
 import ca.ntro.app.messages.MessageRegistrar;
 import ca.ntro.app.models.ModelRegistrar;
+import snake.commun.messages.MsgAjouterArgent;
 import snake.frontal.FrontalSnake;
 import snake.commun.modeles.ModeleBoutique;
 import snake.commun.valeurs.Fruit;
+import snake.dorsal.DorsalDepart;
 
 public class AppSnake implements NtroAppFx {
 
@@ -23,6 +25,7 @@ public class AppSnake implements NtroAppFx {
 
     @Override
     public void registerMessages(MessageRegistrar registrar) {
+        registrar.registerMessage(MsgAjouterArgent.class);
 
     }
 
@@ -33,6 +36,7 @@ public class AppSnake implements NtroAppFx {
 
     @Override
     public void registerBackend(BackendRegistrar registrar) {
+        registrar.registerBackend(DorsalDepart.class);
 
     }
 

@@ -1,7 +1,5 @@
 package snake.frontal.vues;
 
-import javax.swing.text.View;
-
 import ca.ntro.app.Ntro;
 import ca.ntro.app.frontend.ViewFx;
 import javafx.fxml.FXML;
