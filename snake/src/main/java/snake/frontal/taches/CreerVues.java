@@ -20,6 +20,7 @@ public class CreerVues {
 
                     creerVueBoutique(subTasks);
                     creerVueAccueil(subTasks);
+                    creerVueJeu(subTasks);
                     creerVueRacine(subTasks);
 
                 });
@@ -48,6 +49,17 @@ public class CreerVues {
                     VueAccueil vueAccueil = viewLoader.createView();
 
                     return vueAccueil;
+                });
+    }
+
+    private static void creerVueJeu(FrontendTasks subTasks) {
+        subTasks.task(create(VueJeu.class))
+                .waitsFor(viewLoader(VueJeu.class))
+                .executesAndReturnsValue(inputs -> {
+                    ViewLoader<VueJeu> viewLoader = inputs.get(viewLoader(VueJeu.class));
+                    VueJeu vueJeu = viewLoader.createView();
+
+                    return vueJeu;
                 });
     }
 

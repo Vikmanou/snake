@@ -26,6 +26,7 @@ public class FrontalSnake implements FrontendFx {
     public void registerEvents(EventRegistrar registrar) {
         registrar.registerEvent(EvtAfficherVueAccueil.class);
         registrar.registerEvent(EvtAfficherVueBoutique.class);
+        registrar.registerEvent(EvtAfficherVueJeu.class);
     }
 
     @Override
@@ -45,6 +46,7 @@ public class FrontalSnake implements FrontendFx {
         registrar.registerFragment(ItemBoutique.class, "/fragments/item_boutique.fxml");
 
         registrar.registerView(VueAccueil.class, "/vues/accueil.fxml");
+        registrar.registerView(VueJeu.class, "/vues/jeu.fxml");
 
         registrar.registerStylesheet("/style/prod.css");
     }

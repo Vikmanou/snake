@@ -9,29 +9,25 @@
     fx:controller="snake.frontal.vues.VueBoutique"
     styleClass="conteneur,v,top">
 
-    <HBox styleClass="conteneur,h,center">
+    <HBox styleClass="navbar,conteneur,h,center">
         <Button fx:id="boutonRetourMenu" text="%retourMenu" styleClass="bouton"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <Label text="%titre" styleClass="titre"/>
         <Pane HBox.hgrow="ALWAYS"/>
         <Label fx:id="labelArgent" text="\$000" styleClass="argent"/>
-        <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="30">
+        <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="22">
             <image>
                 <Image url="@/images/argent.png"/>
             </image>
         </ImageView>
     </HBox>
 
-    <Pane styleClass="espacement,moyen"/>
-
-    <VBox styleClass="conteneur,v,top-left">
+    <VBox styleClass="contenu-boutique">
         <Label text="Fruits" styleClass="categorie"/>
 
-        <Pane styleClass="espacement petit"/>
+        <Pane styleClass="espacement,petit"/>
 
         <HBox styleClass="conteneur,h,top-left" fx:id="conteneurFruits"/>
-
     </VBox>
 
 </VBox>
-

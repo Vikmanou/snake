@@ -13,6 +13,7 @@ public class Navigation {
                 .contains(subtasks -> {
                     afficherVueAccueil(subtasks);
                     afficherVueBoutique(subtasks);
+                    afficherVueJeu(subtasks);
                 });
     }
 
@@ -28,6 +29,20 @@ public class Navigation {
                     VueBoutique vueBoutique = inputs.get(created(VueBoutique.class));
 
                     evtAfficherVueBoutique.afficherVueBoutique(vueRacine, vueBoutique);
+                });
+    }
+
+    private static void afficherVueJeu(FrontendTasks tasks) {
+        tasks.task("naviguerVersJeu")
+                .waitsFor(event(EvtAfficherVueJeu.class))
+                .waitsFor(created(VueRacine.class))
+                .waitsFor(created(VueJeu.class))
+                .executes(inputs -> {
+                    EvtAfficherVueJeu evtAfficherVueJeu = inputs.get(event(EvtAfficherVueJeu.class));
+                    VueRacine vueRacine = inputs.get(created(VueRacine.class));
+                    VueJeu vueJeu = inputs.get(created(VueJeu.class));
+
+                    evtAfficherVueJeu.afficherVueJeu(vueRacine, vueJeu);
                 });
     }
 

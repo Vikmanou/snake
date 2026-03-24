@@ -2,12 +2,18 @@
 
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.control.* ?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
     fx:controller="snake.frontal.vues.VueAccueil"
-    styleClass="conteneur,v,top">
+    styleClass="conteneur,v,center">
+
+    <Label text="SNAKE" styleClass="titre-jeu"/>
+
+    <Pane styleClass="espacement,moyen"/>
+
+    <Button fx:id="boutonJouer" text="%jouer"/>
+
+    <Pane styleClass="espacement,petit"/>
 
     <Button fx:id="boutonBoutique" text="%boutique"/>
 
