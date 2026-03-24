@@ -9,6 +9,7 @@ public class DorsalDepart extends LocalBackendNtro {
     @Override
     public void createTasks(BackendTasks tasks) {
         GererArgent.creerTaches(tasks);
+        GererFruits.creerTaches(tasks);
     }
 
 }

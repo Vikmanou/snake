@@ -8,6 +8,9 @@ public class Fruit implements ModelValue {
     private int ordreDansBoutique;
     private boolean montrerDansLaBoutique;
 
+    public Fruit() {
+    }
+
     public Fruit(String nom, int prix, int ordreDansBoutique, boolean montrerDansLaBoutique) {
         this.nom = nom;
         this.prix = prix;

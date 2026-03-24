@@ -5,7 +5,6 @@ import ca.ntro.app.frontend.ViewFx;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import snake.commun.messages.MsgAjouterArgent;
 import snake.frontal.evenements.EvtAfficherVueAccueil;
 import ca.ntro.app.frontend.ViewLoader;
 import snake.frontal.fragments.ItemBoutique;
@@ -32,14 +31,6 @@ public class VueBoutique extends ViewFx {
         boutonRetourMenu.setOnAction(evtFx -> {
             Ntro.newEvent(EvtAfficherVueAccueil.class).trigger();
         });
-
-        /*
-         * boutonAcheter.setOnAction(evtFx -> {
-         * Ntro.newMessage(MsgAjouterArgent.class)
-         * .setMontantAleatoire()
-         * .send();
-         * });
-         */
     }
 
     public void setItemBoutiqueViewLoader(ViewLoader<ItemBoutique> loader) {
@@ -48,6 +39,10 @@ public class VueBoutique extends ViewFx {
 
     public void setArgent(int argent) {
         labelArgent.setText("$" + argent);
+    }
+
+    public void viderFruits() {
+        conteneurFruits.getChildren().clear();
     }
 
     public void ajouterItemBoutique(String nomItem, int prix) {

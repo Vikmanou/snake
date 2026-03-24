@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.* ?>
-<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import snake.frontal.controles.CanvasJeu?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
     fx:controller="snake.frontal.vues.VueJeu"
@@ -9,6 +10,10 @@
 
     <HBox styleClass="navbar,conteneur,h,center-left">
         <Button fx:id="boutonQuitter" text="%quitterJeu" styleClass="bouton"/>
+    </HBox>
+
+    <HBox styleClass="conteneur,h,center" VBox.vgrow="ALWAYS">
+        <CanvasJeu fx:id="canvas" styleClass="canvas" HBox.hgrow="ALWAYS"/>
     </HBox>
 
 </VBox>

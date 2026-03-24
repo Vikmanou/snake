@@ -20,6 +20,7 @@ public class FrontalSnake implements FrontendFx {
         Navigation.creerTaches(tasks);
         GererArgent.creerTaches(tasks);
         AfficherItemsBoutique.creerTaches(tasks);
+        TacheJeu.creerTaches(tasks);
     }
 
     @Override
@@ -27,6 +28,7 @@ public class FrontalSnake implements FrontendFx {
         registrar.registerEvent(EvtAfficherVueAccueil.class);
         registrar.registerEvent(EvtAfficherVueBoutique.class);
         registrar.registerEvent(EvtAfficherVueJeu.class);
+        registrar.registerEvent(EvtChangerDirection.class);
     }
 
     @Override

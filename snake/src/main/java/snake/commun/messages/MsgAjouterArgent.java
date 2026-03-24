@@ -11,6 +11,11 @@ public class MsgAjouterArgent extends Message<MsgAjouterArgent> {
         modeleBoutique.ajouterArgent(montant);
     }
 
+    public MsgAjouterArgent setMontant(int montant) {
+        this.montant = montant;
+        return this;
+    }
+
     public MsgAjouterArgent setMontantAleatoire() {
         this.montant = Ntro.random().nextInt(100);
         return this;
