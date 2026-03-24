@@ -27,17 +27,20 @@ public class Serpent2d extends Object2dFx {
 	public void onTimePasses(double secondsElapsed) {
 		super.onTimePasses(secondsElapsed);
 
-		if (getTopLeftX() + getWidth() <= 0) {
-			setTopLeftX(getWorldWidth());
-		}
-		if (getTopLeftX() >= getWorldWidth()) {
+		if (getTopLeftX() <= 0) {
 			setTopLeftX(0);
 		}
-		if (getTopLeftY() + getHeight() <= 0) {
-			setTopLeftY(getWorldHeight());
-		}
-		if (getTopLeftY() >= getWorldHeight()) {
+
+		if (getTopLeftY() <= 0) {
 			setTopLeftY(0);
+		}
+
+		if (getTopLeftX() + getWidth() >= getWorldWidth()) {
+			setTopLeftX(getWorldWidth() - getWidth());
+		}
+
+		if (getTopLeftY() + getHeight() >= getWorldHeight()) {
+			setTopLeftY(getWorldHeight() - getHeight());
 		}
 	}
 
