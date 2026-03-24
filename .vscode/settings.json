@@ -1,5 +1,5 @@
 {
-    "chat.disableAIFeatures": true,
+    "chat.disableAIFeatures": false,
     "update.mode": "none",
     "update.showReleaseNotes": false,
     "update.enableWindowsBackgroundUpdates": false,
@@ -23,7 +23,7 @@
     },
 
 	"files.exclude": {
-	    ".vscode" : true,
+	    ".vscode" : false,
 	    ".git" : true,
 	    ".gradle" : true,
 	    "gradle" : true,
@@ -38,8 +38,8 @@
 	    "**/_storage/options" : true,
 	    "buildSrc" : true,
 	    "libs" : true,
-	    ".gitignore" : true,
-	    "*.zip" : true,
+	    ".gitignore" : false,
+	    "*.zip" : false,
 	    "scripts" : true,
 	    "vscode.sh" : true,
 	    "*.swp" : true
