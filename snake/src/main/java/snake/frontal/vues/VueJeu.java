@@ -32,27 +32,29 @@ public class VueJeu extends ViewFx {
         rootNode().setFocusTraversable(true);
         rootNode().requestFocus();
 
-        rootNode().addEventFilter(KeyEvent.KEY_PRESSED, evtFx -> {
-            if (evtFx.getCode().equals(KeyCode.UP)) {
+        installerEvenementsClavier();
+    }
 
+    private void installerEvenementsClavier() {
+        rootNode().addEventFilter(KeyEvent.KEY_PRESSED, evtFx -> {
+            var keyCode = evtFx.getCode();
+
+            if (keyCode.equals(KeyCode.UP)) {
                 Ntro.newEvent(EvtChangerDirection.class)
                         .setDirection(DirectionSnake.HAUT)
                         .trigger();
 
-            } else if (evtFx.getCode().equals(KeyCode.DOWN)) {
-
+            } else if (keyCode.equals(KeyCode.DOWN)) {
                 Ntro.newEvent(EvtChangerDirection.class)
                         .setDirection(DirectionSnake.BAS)
                         .trigger();
 
-            } else if (evtFx.getCode().equals(KeyCode.LEFT)) {
-
+            } else if (keyCode.equals(KeyCode.LEFT)) {
                 Ntro.newEvent(EvtChangerDirection.class)
                         .setDirection(DirectionSnake.GAUCHE)
                         .trigger();
 
-            } else if (evtFx.getCode().equals(KeyCode.RIGHT)) {
-
+            } else if (keyCode.equals(KeyCode.RIGHT)) {
                 Ntro.newEvent(EvtChangerDirection.class)
                         .setDirection(DirectionSnake.DROITE)
                         .trigger();

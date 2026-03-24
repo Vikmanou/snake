@@ -18,17 +18,16 @@ public class Fruit implements ModelValue {
         this.montrerDansLaBoutique = montrerDansLaBoutique;
     }
 
-    @Override
-    public String toString() {
-        return nom;
-    }
-
     public String getNom() {
         return nom;
     }
 
     public int getPrix() {
         return prix;
+    }
+
+    public int getOrdreDansBoutique() {
+        return ordreDansBoutique;
     }
 
     public boolean getMontrerDansLaBoutique() {

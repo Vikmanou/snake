@@ -23,6 +23,9 @@ public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
 
 	public void afficherFruits(VueBoutique vueBoutique) {
 		vueBoutique.viderFruits();
+
+		fruits.sort((f1, f2) -> Integer.compare(f1.getOrdreDansBoutique(), f2.getOrdreDansBoutique()));
+
 		for (Fruit fruit : fruits) {
 			if (fruit.getMontrerDansLaBoutique()) {
 				vueBoutique.ajouterItemBoutique(fruit.getNom(), fruit.getPrix());
@@ -32,11 +35,11 @@ public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
 
 	public void initialiserFruits() {
 		fruits.clear();
-		fruits.add(new Fruit("Pomme", 10, 1, true));
+		fruits.add(new Fruit("Pomme", 10, 5, true));
 		fruits.add(new Fruit("Banane", 15, 2, true));
 		fruits.add(new Fruit("Cerise", 20, 3, true));
 		fruits.add(new Fruit("Raisin", 25, 4, true));
-		fruits.add(new Fruit("Mangue", 30, 5, true));
+		fruits.add(new Fruit("Mangue", 30, 1, true));
 	}
 
 	public void acheterFruit(String nom) {
