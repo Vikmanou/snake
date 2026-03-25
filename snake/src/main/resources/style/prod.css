@@ -179,10 +179,6 @@ Button:pressed {
 	-fx-spacing: 6;
 }
 
-.item-boutique:hover {
-	-fx-border-color: #4ade80;
-}
-
 .titre-item {
 	-fx-font-size: 13px;
 	-fx-font-weight: bold;

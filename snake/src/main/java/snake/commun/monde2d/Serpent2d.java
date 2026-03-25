@@ -176,6 +176,11 @@ public class Serpent2d extends Object2dFx {
 		if (snapX) {
 			double newX = MathUtils.snap(getTopLeftX(), TAILLE_SERPENT);
 			setTopLeftX(newX);
+
+			for (double[] pos : positionHistory) {
+				// TODO: enlever les positions qui overshoot a cause du snap
+
+			}
 		}
 
 		if (snapY) {
@@ -210,6 +215,7 @@ public class Serpent2d extends Object2dFx {
 			double offset = (TAILLE_SERPENT - taille) / 2;
 
 			gc.setFill(COULEUR_QUEUE);
+			gc.setStroke(COULEUR_QUEUE.darker());
 
 			if (i == longueur - 1) {
 				gc.fillOval(pos[0] + offset, pos[1] + offset, taille, taille);
