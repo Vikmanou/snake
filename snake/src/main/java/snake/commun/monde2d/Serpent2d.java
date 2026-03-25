@@ -9,7 +9,9 @@ import snake.commun.enums.DirectionSnake;
 
 public class Serpent2d extends Object2dFx {
 
-	private static final double VITESSE = 150;
+	public static final double TAILLE_SERPENT = 20;
+
+	private static final double VITESSE = 135.0;
 	private int longueur = 1;
 
 	private double angleTete = 0;
@@ -17,8 +19,8 @@ public class Serpent2d extends Object2dFx {
 
 	public Serpent2d() {
 		super();
-		setWidth(20);
-		setHeight(20);
+		setWidth(TAILLE_SERPENT);
+		setHeight(TAILLE_SERPENT);
 	}
 
 	@Override

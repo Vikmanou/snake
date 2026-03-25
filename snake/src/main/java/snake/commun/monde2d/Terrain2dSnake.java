@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 
 public class Terrain2dSnake extends Object2dFx {
 
-    private static final double TAILLE_CASE = 20.0;
+    private static final double TAILLE_CASE = Serpent2d.TAILLE_SERPENT;
 
     private static final Color VERT_PALE = Color.web("#A2D149");
     private static final Color VERT_FONCE = Color.web("#94BF43");

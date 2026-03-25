@@ -1,5 +1,7 @@
 package snake.frontal.vues;
 
+import java.util.Map;
+
 import ca.ntro.app.Ntro;
 import ca.ntro.app.frontend.ViewFx;
 import javafx.fxml.FXML;
@@ -11,8 +13,21 @@ import snake.commun.monde2d.MondeSnake2d;
 import snake.frontal.controles.CanvasJeu;
 import snake.frontal.evenements.EvtAfficherVueAccueil;
 import snake.frontal.evenements.EvtChangerDirection;
+import snake.frontal.utils.GestionnaireTouches;
 
 public class VueJeu extends ViewFx {
+
+    private GestionnaireTouches gestionnaireTouches = new GestionnaireTouches();
+
+    private static final Map<KeyCode, DirectionSnake> DIRECTIONS_PAR_TOUCHE = Map.of(
+            KeyCode.UP, DirectionSnake.HAUT,
+            KeyCode.W, DirectionSnake.HAUT,
+            KeyCode.DOWN, DirectionSnake.BAS,
+            KeyCode.S, DirectionSnake.BAS,
+            KeyCode.LEFT, DirectionSnake.GAUCHE,
+            KeyCode.A, DirectionSnake.GAUCHE,
+            KeyCode.RIGHT, DirectionSnake.DROITE,
+            KeyCode.D, DirectionSnake.DROITE);
 
     @FXML
     private Button boutonQuitter;
@@ -37,26 +52,28 @@ public class VueJeu extends ViewFx {
 
     private void installerEvenementsClavier() {
         rootNode().addEventFilter(KeyEvent.KEY_PRESSED, evtFx -> {
-            var keyCode = evtFx.getCode();
+            gestionnaireTouches.activer(evtFx.getCode());
+        });
 
-            if (keyCode.equals(KeyCode.UP)) {
-                Ntro.newEvent(EvtChangerDirection.class)
-                        .setDirection(DirectionSnake.HAUT)
-                        .trigger();
+        rootNode().addEventFilter(KeyEvent.KEY_RELEASED, evtFx -> {
+            gestionnaireTouches.desactiver(evtFx.getCode());
+        });
 
-            } else if (keyCode.equals(KeyCode.DOWN)) {
-                Ntro.newEvent(EvtChangerDirection.class)
-                        .setDirection(DirectionSnake.BAS)
-                        .trigger();
+        gestionnaireTouches.reagirCombinaison(touches -> {
+            KeyCode touche01 = null;
 
-            } else if (keyCode.equals(KeyCode.LEFT)) {
-                Ntro.newEvent(EvtChangerDirection.class)
-                        .setDirection(DirectionSnake.GAUCHE)
-                        .trigger();
+            if (touches.size() > 0) {
+                touche01 = touches.get(0);
+            }
 
-            } else if (keyCode.equals(KeyCode.RIGHT)) {
+            DirectionSnake direction = null;
+            if (touche01 != null) {
+                direction = DIRECTIONS_PAR_TOUCHE.get(touche01);
+            }
+
+            if (direction != null) {
                 Ntro.newEvent(EvtChangerDirection.class)
-                        .setDirection(DirectionSnake.DROITE)
+                        .setDirection(direction)
                         .trigger();
             }
         });
