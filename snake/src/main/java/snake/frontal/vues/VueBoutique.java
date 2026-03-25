@@ -8,6 +8,8 @@ import javafx.scene.layout.HBox;
 import snake.frontal.evenements.EvtAfficherVueAccueil;
 import ca.ntro.app.frontend.ViewLoader;
 import snake.frontal.fragments.ItemBoutique;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class VueBoutique extends ViewFx {
 
@@ -38,7 +40,8 @@ public class VueBoutique extends ViewFx {
     }
 
     public void setArgent(int argent) {
-        labelArgent.setText("$" + argent);
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+        labelArgent.setText("$" + format.format(argent));
     }
 
     public void viderFruits() {

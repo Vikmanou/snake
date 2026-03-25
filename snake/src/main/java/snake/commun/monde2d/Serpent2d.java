@@ -17,14 +17,14 @@ public class Serpent2d extends Object2dFx {
 
 	private static final double VITESSE = 135.0;
 
-	private int longueur = 2;
+	private int longueur = 25;
 	private DirectionSnake direction = DirectionSnake.DROITE;
 
 	private double angleTete = 0;
 	private Image teteSnake = new Image(getClass().getResourceAsStream("/images/snake.png"));
 
 	private List<double[]> positionHistory = new ArrayList<>();
-	private static final Color COULEUR_QUEUE = Color.web("#a0c432");
+	private static final Color COULEUR_QUEUE = Color.web("#85a32a");
 
 	public Serpent2d() {
 		super();
@@ -136,6 +136,9 @@ public class Serpent2d extends Object2dFx {
 		boolean snapX = false;
 		boolean snapY = false;
 
+		double ajoutX = 0;
+		double ajoutY = 0;
+
 		if (direction == DirectionSnake.HAUT) {
 			setSpeedX(0);
 			setSpeedY(-VITESSE);
@@ -203,12 +206,16 @@ public class Serpent2d extends Object2dFx {
 			double distance = i * TAILLE_SERPENT;
 			double[] pos = trouverPositionQueue(distance);
 
-			double taille = TAILLE_SERPENT * 0.9;
+			double taille = TAILLE_SERPENT * 1;
 			double offset = (TAILLE_SERPENT - taille) / 2;
 
 			gc.setFill(COULEUR_QUEUE);
 
-			gc.fillRoundRect(pos[0] + offset, pos[1] + offset, taille, taille, 6, 6);
+			if (i == longueur - 1) {
+				gc.fillOval(pos[0] + offset, pos[1] + offset, taille, taille);
+			} else {
+				gc.fillRoundRect(pos[0] + offset, pos[1] + offset, taille, taille, 0, 0);
+			}
 		}
 
 		// dessiner la tete
