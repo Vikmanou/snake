@@ -15,11 +15,11 @@ import snake.frontal.utils.MathUtils;
 
 public class Serpent2d extends Object2dFx {
 
-	public static final double TAILLE_SERPENT = 20;
+	private static final double TAILLE_SERPENT = Terrain2dSnake.TAILLE_CASE;
 
 	private static final double VITESSE = 135.0;
 
-	private int longueur = 25;
+	private int longueur = 3;
 	private DirectionSnake direction = DirectionSnake.DROITE;
 
 	private double angleTete = 0;
@@ -145,7 +145,7 @@ public class Serpent2d extends Object2dFx {
 		}
 
 		if (snapX) {
-			double newX = MathUtils.snap(getTopLeftX(), TAILLE_SERPENT);
+			double newX = Terrain2dSnake.caseAPosition(getTopLeftX());
 			setTopLeftX(newX);
 
 			while (!positionHistory.isEmpty()) {
@@ -162,7 +162,7 @@ public class Serpent2d extends Object2dFx {
 		}
 
 		if (snapY) {
-			double newY = MathUtils.snap(getTopLeftY(), TAILLE_SERPENT);
+			double newY = Terrain2dSnake.caseAPosition(getTopLeftY());
 			setTopLeftY(newY);
 
 			while (!positionHistory.isEmpty()) {
@@ -190,6 +190,32 @@ public class Serpent2d extends Object2dFx {
 		return longueur;
 	}
 
+	public boolean occupeCase(double cellX, double cellY) {
+		double distanceMax = (longueur - 1) * TAILLE_SERPENT;
+		double distanceParcourue = 0;
+		double[] prevPos = new double[] { getTopLeftX(), getTopLeftY() };
+
+		if (Terrain2dSnake.caseAPosition(prevPos[0]) == cellX && Terrain2dSnake.caseAPosition(prevPos[1]) == cellY) {
+			return true;
+		}
+
+		for (double[] pos : positionHistory) {
+			double distance = MathUtils.distance(prevPos[0], prevPos[1], pos[0], pos[1]);
+
+			if (Terrain2dSnake.caseAPosition(pos[0]) == cellX && Terrain2dSnake.caseAPosition(pos[1]) == cellY) {
+				return true;
+			}
+
+			distanceParcourue += distance;
+			if (distanceParcourue >= distanceMax) {
+				break;
+			}
+			prevPos = pos;
+		}
+
+		return false;
+	}
+
 	@Override
 	protected boolean onMouseEvent(World2dMouseEventFx mouseEvent) {
 		return false;
@@ -213,11 +239,11 @@ public class Serpent2d extends Object2dFx {
 
 		for (int i = 0; i < positionHistory.size(); i++) {
 			double[] pos = positionHistory.get(i);
-			double d = MathUtils.distance(prevPos[0], prevPos[1], pos[0], pos[1]);
+			double distance = MathUtils.distance(prevPos[0], prevPos[1], pos[0], pos[1]);
 
-			if (distanceParcourue + d >= distanceMax) {
+			if (distanceParcourue + distance >= distanceMax) {
 				// Utiliser le ratio pour dessiner un segment partiel à la fin du corps
-				double ratio = d > 0 ? (distanceMax - distanceParcourue) / d : 0;
+				double ratio = distance > 0 ? (distanceMax - distanceParcourue) / distance : 0;
 				gc.lineTo(prevPos[0] + ratio * (pos[0] - prevPos[0]) + RAYON_SERPENT,
 						prevPos[1] + ratio * (pos[1] - prevPos[1]) + RAYON_SERPENT);
 				break;
@@ -225,7 +251,7 @@ public class Serpent2d extends Object2dFx {
 
 			// Dessiner une ligne jusqu'à la position actuelle
 			gc.lineTo(pos[0] + RAYON_SERPENT, pos[1] + RAYON_SERPENT);
-			distanceParcourue += d;
+			distanceParcourue += distance;
 			prevPos = pos;
 		}
 
