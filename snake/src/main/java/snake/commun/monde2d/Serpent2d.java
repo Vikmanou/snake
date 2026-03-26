@@ -177,15 +177,35 @@ public class Serpent2d extends Object2dFx {
 			double newX = MathUtils.snap(getTopLeftX(), TAILLE_SERPENT);
 			setTopLeftX(newX);
 
-			for (double[] pos : positionHistory) {
-				// TODO: enlever les positions qui overshoot a cause du snap
-
+			while (!positionHistory.isEmpty()) {
+				double[] pos = positionHistory.get(0);
+				boolean overshoot = (ancienneDirection == DirectionSnake.DROITE && pos[0] > newX)
+						|| (ancienneDirection == DirectionSnake.GAUCHE && pos[0] < newX);
+				if (overshoot) {
+					positionHistory.remove(0);
+				} else {
+					break;
+				}
 			}
+			positionHistory.add(0, new double[] { newX, getTopLeftY() });
 		}
 
 		if (snapY) {
 			double newY = MathUtils.snap(getTopLeftY(), TAILLE_SERPENT);
 			setTopLeftY(newY);
+
+			while (!positionHistory.isEmpty()) {
+				double[] pos = positionHistory.get(0);
+				boolean overshoot = (ancienneDirection == DirectionSnake.HAUT && pos[1] < newY)
+						|| (ancienneDirection == DirectionSnake.BAS && pos[1] > newY);
+				if (overshoot) {
+					positionHistory.remove(0);
+				} else {
+					break;
+				}
+			}
+
+			positionHistory.add(0, new double[] { getTopLeftX(), newY });
 		}
 
 		this.direction = direction;
