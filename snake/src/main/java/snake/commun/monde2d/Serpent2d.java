@@ -8,6 +8,8 @@ import ca.ntro.app.world2d.Object2dFx;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
 import snake.commun.enums.DirectionSnake;
 import snake.frontal.utils.MathUtils;
 
@@ -24,7 +26,7 @@ public class Serpent2d extends Object2dFx {
 	private Image teteSnake = new Image(getClass().getResourceAsStream("/images/snake.png"));
 
 	private List<double[]> positionHistory = new ArrayList<>();
-	private static final Color COULEUR_QUEUE = Color.web("#85a32a");
+	private static final Color COULEUR_CORPS = Color.web("#4AAD1E");
 
 	public Serpent2d() {
 		super();
@@ -102,42 +104,11 @@ public class Serpent2d extends Object2dFx {
 		}
 	}
 
-	private double[] trouverPositionQueue(double distanceDeLaTete) {
-		double distanceParcourue = 0;
-
-		for (int i = 1; i < positionHistory.size(); i++) {
-			double[] pos1 = positionHistory.get(i - 1);
-			double[] pos2 = positionHistory.get(i);
-
-			double distanceX = pos2[0] - pos1[0];
-			double distanceY = pos2[1] - pos1[1];
-
-			double distanceSegment = MathUtils.distance(pos1[0], pos1[1], pos2[0], pos2[1]);
-
-			if (distanceParcourue + distanceSegment >= distanceDeLaTete) {
-				double ratio = (distanceDeLaTete - distanceParcourue) / distanceSegment;
-				return new double[] { pos1[0] + ratio * distanceX, pos1[1] + ratio * distanceY };
-			}
-
-			distanceParcourue += distanceSegment;
-		}
-
-		if (!positionHistory.isEmpty()) {
-			double[] derniere = positionHistory.get(positionHistory.size() - 1);
-			return new double[] { derniere[0], derniere[1] };
-		}
-
-		return new double[] { getTopLeftX(), getTopLeftY() };
-	}
-
 	public void changerDirection(DirectionSnake direction) {
 		DirectionSnake ancienneDirection = this.direction;
 
 		boolean snapX = false;
 		boolean snapY = false;
-
-		double ajoutX = 0;
-		double ajoutY = 0;
 
 		if (direction == DirectionSnake.HAUT) {
 			setSpeedX(0);
@@ -224,31 +195,54 @@ public class Serpent2d extends Object2dFx {
 		return false;
 	}
 
-	@Override
-	public void drawOnWorld(GraphicsContext gc) {
-		// dessiner la queue
-		for (int i = longueur - 1; i >= 1; i--) {
-			double distance = i * TAILLE_SERPENT;
-			double[] pos = trouverPositionQueue(distance);
+	private static final double RAYON_SERPENT = TAILLE_SERPENT / 2.0;
 
-			double taille = TAILLE_SERPENT * 1;
-			double offset = (TAILLE_SERPENT - taille) / 2;
+	private void dessinerCorpsSerpent(GraphicsContext gc) {
+		double distanceMax = (longueur - 1) * TAILLE_SERPENT;
 
-			gc.setFill(COULEUR_QUEUE);
-			gc.setStroke(COULEUR_QUEUE.darker());
+		gc.setStroke(COULEUR_CORPS);
+		gc.setLineWidth(TAILLE_SERPENT);
+		gc.setLineCap(StrokeLineCap.ROUND);
+		gc.setLineJoin(StrokeLineJoin.ROUND);
 
-			if (i == longueur - 1) {
-				gc.fillOval(pos[0] + offset, pos[1] + offset, taille, taille);
-			} else {
-				gc.fillRoundRect(pos[0] + offset, pos[1] + offset, taille, taille, 0, 0);
+		gc.beginPath();
+		gc.moveTo(getTopLeftX() + RAYON_SERPENT, getTopLeftY() + RAYON_SERPENT);
+
+		double distanceParcourue = 0;
+		double[] prevPos = new double[] { getTopLeftX(), getTopLeftY() };
+
+		for (int i = 0; i < positionHistory.size(); i++) {
+			double[] pos = positionHistory.get(i);
+			double d = MathUtils.distance(prevPos[0], prevPos[1], pos[0], pos[1]);
+
+			if (distanceParcourue + d >= distanceMax) {
+				// Utiliser le ratio pour dessiner un segment partiel à la fin du corps
+				double ratio = d > 0 ? (distanceMax - distanceParcourue) / d : 0;
+				gc.lineTo(prevPos[0] + ratio * (pos[0] - prevPos[0]) + RAYON_SERPENT,
+						prevPos[1] + ratio * (pos[1] - prevPos[1]) + RAYON_SERPENT);
+				break;
 			}
+
+			// Dessiner une ligne jusqu'à la position actuelle
+			gc.lineTo(pos[0] + RAYON_SERPENT, pos[1] + RAYON_SERPENT);
+			distanceParcourue += d;
+			prevPos = pos;
 		}
 
-		// dessiner la tete
+		gc.stroke();
+	}
+
+	private void dessinerTeteSerpent(GraphicsContext gc) {
 		gc.save();
 		gc.translate(getTopLeftX() + getWidth() / 2, getTopLeftY() + getHeight() / 2);
 		gc.rotate(angleTete);
 		gc.drawImage(teteSnake, -getWidth() / 2, -getHeight() / 2, getWidth(), getHeight());
 		gc.restore();
+	}
+
+	@Override
+	public void drawOnWorld(GraphicsContext gc) {
+		dessinerCorpsSerpent(gc);
+		dessinerTeteSerpent(gc);
 	}
 }
