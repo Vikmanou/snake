@@ -107,6 +107,13 @@ public class Serpent2d extends Object2dFx {
 	public void changerDirection(DirectionSnake direction) {
 		DirectionSnake ancienneDirection = this.direction;
 
+		if ((ancienneDirection == DirectionSnake.HAUT && direction == DirectionSnake.BAS)
+				|| (ancienneDirection == DirectionSnake.BAS && direction == DirectionSnake.HAUT)
+				|| (ancienneDirection == DirectionSnake.GAUCHE && direction == DirectionSnake.DROITE)
+				|| (ancienneDirection == DirectionSnake.DROITE && direction == DirectionSnake.GAUCHE)) {
+			return;
+		}
+
 		boolean snapX = false;
 		boolean snapY = false;
 
