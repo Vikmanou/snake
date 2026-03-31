@@ -19,8 +19,12 @@ public class Serpent2d extends Object2dFx {
 
 	private static final double VITESSE = 135.0;
 
+	private static final double DUREE_ANIMATION_GROW = .2;
+
 	private int longueur = 3;
 	private DirectionSnake direction = DirectionSnake.DROITE;
+
+	private double secondesRestantesAnimationGrow = 0;
 
 	private double angleTete = 0;
 	private Image teteSnake = new Image(getClass().getResourceAsStream("/images/snake.png"));
@@ -48,6 +52,12 @@ public class Serpent2d extends Object2dFx {
 	@Override
 	public void onTimePasses(double secondsElapsed) {
 		super.onTimePasses(secondsElapsed);
+
+		if (secondesRestantesAnimationGrow > 0) {
+			secondesRestantesAnimationGrow -= secondsElapsed;
+			if (secondesRestantesAnimationGrow < 0)
+				secondesRestantesAnimationGrow = 0;
+		}
 
 		if (getTopLeftX() <= 0) {
 			setTopLeftX(0);
@@ -191,6 +201,7 @@ public class Serpent2d extends Object2dFx {
 
 	public void augmenterLongueur() {
 		longueur++;
+		secondesRestantesAnimationGrow = DUREE_ANIMATION_GROW;
 	}
 
 	public int getLongueur() {
@@ -231,7 +242,8 @@ public class Serpent2d extends Object2dFx {
 	private static final double RAYON_SERPENT = TAILLE_SERPENT / 2.0;
 
 	private void dessinerCorpsSerpent(GraphicsContext gc) {
-		double distanceMax = (longueur - 1) * TAILLE_SERPENT;
+		double t = 1.0 - (secondesRestantesAnimationGrow / DUREE_ANIMATION_GROW);
+		double distanceMax = (longueur - 2) * TAILLE_SERPENT + TAILLE_SERPENT * t; // (longueur - 1) * TAILLE_SERPENT;
 
 		gc.setStroke(COULEUR_CORPS);
 		gc.setLineWidth(TAILLE_SERPENT);

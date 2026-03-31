@@ -11,7 +11,7 @@ public class Fruit2d extends Object2dFx {
 
 	private static final double TAILLE = Terrain2dSnake.TAILLE_CASE;
 
-	private static final double DUREE_ANIMATION = 0.4;
+	private static final double DUREE_ANIMATION = 0.3;
 
 	private final Random random = new Random();
 
@@ -31,6 +31,7 @@ public class Fruit2d extends Object2dFx {
 	@Override
 	public void onTimePasses(double secondsElapsed) {
 		super.onTimePasses(secondsElapsed);
+
 		if (secondesRestantesAnimationFruit > 0) {
 			secondesRestantesAnimationFruit -= secondsElapsed;
 			if (secondesRestantesAnimationFruit < 0)
