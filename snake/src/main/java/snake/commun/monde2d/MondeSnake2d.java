@@ -3,14 +3,17 @@ package snake.commun.monde2d;
 import ca.ntro.app.fx.controls.World2dMouseEventFx;
 import ca.ntro.app.world2d.World2dFx;
 import snake.commun.enums.DirectionSnake;
+import snake.commun.modeles.ModeleInventaire;
 
 public class MondeSnake2d extends World2dFx {
 
 	private Serpent2d serpent = new Serpent2d();
 	private Fruit2d fruit = new Fruit2d();
 
-	public MondeSnake2d() {
+	public MondeSnake2d(ModeleInventaire modeleInventaire) {
 		super();
+
+		fruit.setModeleInventaire(modeleInventaire);
 
 		addObject2d("terrain", 1, new Terrain2dSnake());
 		addObject2d("fruit", 2, fruit);

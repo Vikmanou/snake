@@ -1,11 +1,13 @@
 package snake.commun.monde2d;
 
+import java.util.List;
 import java.util.Random;
 
 import ca.ntro.app.fx.controls.World2dMouseEventFx;
 import ca.ntro.app.world2d.Object2dFx;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import snake.commun.modeles.ModeleInventaire;
 
 public class Fruit2d extends Object2dFx {
 
@@ -15,7 +17,14 @@ public class Fruit2d extends Object2dFx {
 
 	private final Random random = new Random();
 
+	private ModeleInventaire modeleInventaire;
+	private String imageActuelle = "pomme";
+
 	private double secondesRestantesAnimationFruit = 0;
+
+	public void setModeleInventaire(ModeleInventaire modeleInventaire) {
+		this.modeleInventaire = modeleInventaire;
+	}
 
 	public Fruit2d() {
 		super();
@@ -52,6 +61,15 @@ public class Fruit2d extends Object2dFx {
 		setTopLeftX(caseX);
 		setTopLeftY(caseY);
 
+		if (modeleInventaire != null) {
+			List<String> nomsImages = new java.util.ArrayList<>();
+			for (var fruit : modeleInventaire.getFruitsAchetes()) {
+				nomsImages.add(fruit.getImage());
+			}
+
+			imageActuelle = nomsImages.get(random.nextInt(nomsImages.size()));
+		}
+
 		secondesRestantesAnimationFruit = DUREE_ANIMATION;
 	}
 
@@ -72,7 +90,7 @@ public class Fruit2d extends Object2dFx {
 
 	@Override
 	public void drawOnWorld(GraphicsContext gc) {
-		Image imageFruit = new Image(getClass().getResourceAsStream("/images/pomme.png"));
+		Image imageFruit = new Image(getClass().getResourceAsStream("/images/fruits/" + imageActuelle + ".png"));
 
 		double t = 1.0 - (secondesRestantesAnimationFruit / DUREE_ANIMATION);
 		double nouveauTaille = TAILLE * t;

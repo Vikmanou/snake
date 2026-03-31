@@ -2,7 +2,9 @@ package snake.frontal.taches;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
 
+import ca.ntro.app.modified.Modified;
 import ca.ntro.app.tasks.frontend.FrontendTasks;
+import snake.commun.modeles.ModeleInventaire;
 import snake.frontal.donnees.DonneesVueJeu;
 import snake.frontal.evenements.EvtChangerDirection;
 import snake.frontal.vues.VueJeu;
@@ -24,7 +26,11 @@ public class TacheJeu {
     private static void creerDonneesVueJeu(FrontendTasks tasks) {
         tasks.task(create(DonneesVueJeu.class))
                 .waitsFor("naviguerVersJeu")
-                .executesAndReturnsValue(inputs -> new DonneesVueJeu());
+                .waitsFor(modified(ModeleInventaire.class))
+                .executesAndReturnsValue(inputs -> {
+                    Modified<ModeleInventaire> modeleInventaire = inputs.get(modified(ModeleInventaire.class));
+                    return new DonneesVueJeu(modeleInventaire.currentValue());
+                });
     }
 
     private static void boucleJeu(FrontendTasks subTasks) {
