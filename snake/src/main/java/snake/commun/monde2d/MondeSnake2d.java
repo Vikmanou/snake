@@ -33,8 +33,9 @@ public class MondeSnake2d extends World2dFx {
 		super.onTimePasses(secondsElapsed);
 
 		if (fruit.estMange(serpent)) {
-			score++;
-			serpent.augmenterLongueur();
+			int tailleBonusFruit = fruit.getTailleBonusFruit();
+			score += tailleBonusFruit;
+			serpent.augmenterLongueur(tailleBonusFruit);
 			fruit.respawn(serpent);
 		}
 	}

@@ -7,15 +7,14 @@ public class Fruit implements ModelValue {
     private int prix;
     private int ordreDansBoutique;
     private boolean montrerDansLaBoutique;
+    private int bonusTailleSerpent;
 
-    public Fruit() {
-    }
-
-    public Fruit(String nom, int prix, int ordreDansBoutique, boolean montrerDansLaBoutique) {
+    public Fruit(String nom, int prix, int ordreDansBoutique, boolean montrerDansLaBoutique, int bonusTailleSerpent) {
         this.nom = nom;
         this.prix = prix;
         this.ordreDansBoutique = ordreDansBoutique;
         this.montrerDansLaBoutique = montrerDansLaBoutique;
+        this.bonusTailleSerpent = bonusTailleSerpent;
     }
 
     public String getImage() {
@@ -36,5 +35,9 @@ public class Fruit implements ModelValue {
 
     public boolean getMontrerDansLaBoutique() {
         return montrerDansLaBoutique;
+    }
+
+    public int getBonusTailleSerpent() {
+        return bonusTailleSerpent;
     }
 }

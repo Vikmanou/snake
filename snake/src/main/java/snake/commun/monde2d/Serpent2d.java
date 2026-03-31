@@ -199,8 +199,8 @@ public class Serpent2d extends Object2dFx {
 		this.direction = direction;
 	}
 
-	public void augmenterLongueur() {
-		longueur++;
+	public void augmenterLongueur(int longeurAjout) {
+		longueur += longeurAjout;
 		secondesRestantesAnimationGrow = DUREE_ANIMATION_GROW;
 	}
 

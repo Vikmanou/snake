@@ -73,6 +73,16 @@ public class Fruit2d extends Object2dFx {
 		secondesRestantesAnimationFruit = DUREE_ANIMATION;
 	}
 
+	public int getTailleBonusFruit() {
+		for (var fruit : modeleInventaire.getFruitsAchetes()) {
+			if (fruit.getImage().equals(imageActuelle)) {
+				return fruit.getBonusTailleSerpent();
+			}
+		}
+
+		return 1;
+	}
+
 	public boolean estMange(Serpent2d serpent) {
 		double serpentX = serpent.getTopLeftX();
 		double serpentY = serpent.getTopLeftY();
