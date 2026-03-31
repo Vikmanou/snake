@@ -10,6 +10,8 @@
 
     <HBox styleClass="navbar,conteneur,h,center-left">
         <Button fx:id="boutonQuitter" text="%quitterJeu" styleClass="bouton"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Label fx:id="labelScore" styleClass="argent"/>
     </HBox>
 
     <HBox styleClass="conteneur,h,center" VBox.vgrow="ALWAYS">

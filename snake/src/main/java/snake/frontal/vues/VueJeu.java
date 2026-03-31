@@ -6,6 +6,7 @@ import ca.ntro.app.Ntro;
 import ca.ntro.app.frontend.ViewFx;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import snake.commun.enums.DirectionSnake;
@@ -31,6 +32,9 @@ public class VueJeu extends ViewFx {
 
     @FXML
     private Button boutonQuitter;
+
+    @FXML
+    private Label labelScore;
 
     @FXML
     private CanvasJeu canvas;
@@ -81,5 +85,6 @@ public class VueJeu extends ViewFx {
 
     public void dessiner(MondeSnake2d monde2d) {
         monde2d.drawOn(canvas);
+        labelScore.setText("Score: " + monde2d.getScore());
     }
 }

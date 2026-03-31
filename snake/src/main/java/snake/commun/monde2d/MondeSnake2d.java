@@ -19,11 +19,18 @@ public class MondeSnake2d extends World2dFx {
 		fruit.respawn(serpent);
 	}
 
+	private int score = 0;
+
+	public int getScore() {
+		return score;
+	}
+
 	@Override
 	public void onTimePasses(double secondsElapsed) {
 		super.onTimePasses(secondsElapsed);
 
 		if (fruit.estMange(serpent)) {
+			score++;
 			serpent.augmenterLongueur();
 			fruit.respawn(serpent);
 		}

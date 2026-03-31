@@ -1,7 +1,6 @@
 package snake.frontal.taches;
 
 import ca.ntro.app.tasks.frontend.FrontendTasks;
-import javafx.stage.Window;
 import snake.frontal.vues.*;
 import snake.frontal.fragments.*;
 
