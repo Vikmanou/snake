@@ -12,6 +12,8 @@ import snake.frontal.vues.VueBoutique;
 public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
 	private List<Fruit> fruits = new ArrayList<>();
 
+	public static Fruit POMME = new Fruit("Pomme", 0, 0, false);
+
 	public Fruit getFruit(String nom) {
 		for (Fruit fruit : fruits) {
 			if (fruit.getNom().equals(nom)) {
@@ -40,7 +42,7 @@ public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
 
 	public void initialiserFruits() {
 		fruits.clear();
-		fruits.add(new Fruit("Pomme", 10, 5, false));
+		fruits.add(POMME);
 		fruits.add(new Fruit("Banane", 15, 2, true));
 		fruits.add(new Fruit("Cerise", 20, 3, true));
 		fruits.add(new Fruit("Raisin", 25, 4, true));

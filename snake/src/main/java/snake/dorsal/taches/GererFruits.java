@@ -15,6 +15,7 @@ public class GererFruits {
 				.waitsFor(model(ModeleInventaire.class))
 				.contains(subTasks -> {
 					tacheInitialiserFruits(subTasks);
+					tacheInitialiserInventaire(subTasks);
 					tacheAcheterFruit(subTasks);
 				});
 	}
@@ -26,6 +27,16 @@ public class GererFruits {
 					ModeleBoutique modeleBoutique = inputs.get(model(ModeleBoutique.class));
 
 					modeleBoutique.initialiserFruits();
+				});
+	}
+
+	private static void tacheInitialiserInventaire(BackendTasks subTasks) {
+		subTasks.task("tacheInitialiserInventaire")
+				.waitsFor(model(ModeleInventaire.class))
+				.executes(inputs -> {
+					ModeleInventaire modeleInventaire = inputs.get(model(ModeleInventaire.class));
+
+					modeleInventaire.initialiserInventaire();
 				});
 	}
 

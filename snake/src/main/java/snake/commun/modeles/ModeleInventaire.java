@@ -14,6 +14,16 @@ public class ModeleInventaire implements Model, WatchJson, WriteObjectGraph {
 	private int argent = 10;
 	private List<Fruit> fruitsAchetes = new ArrayList<>();
 
+	public void initialiserInventaire() {
+		if (fruitsAchetes == null) {
+			fruitsAchetes = new ArrayList<>();
+		}
+
+		if (!estFruitAchete("Pomme")) {
+			fruitsAchetes.add(ModeleBoutique.POMME);
+		}
+	}
+
 	public int getArgent() {
 		return argent;
 	}
@@ -43,6 +53,10 @@ public class ModeleInventaire implements Model, WatchJson, WriteObjectGraph {
 	}
 
 	public boolean estFruitAchete(String nomFruit) {
+		if (fruitsAchetes == null) {
+			return false;
+		}
+
 		for (Fruit fruit : fruitsAchetes) {
 			if (fruit.getNom().equals(nomFruit)) {
 				return true;
