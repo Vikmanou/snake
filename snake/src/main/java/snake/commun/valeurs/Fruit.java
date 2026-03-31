@@ -18,6 +18,10 @@ public class Fruit implements ModelValue {
         this.montrerDansLaBoutique = montrerDansLaBoutique;
     }
 
+    public String getImage() {
+        return this.nom.toLowerCase();
+    }
+
     public String getNom() {
         return nom;
     }
