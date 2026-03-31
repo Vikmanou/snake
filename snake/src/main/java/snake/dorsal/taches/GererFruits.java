@@ -5,12 +5,14 @@ import static ca.ntro.app.tasks.backend.BackendTasks.*;
 import ca.ntro.app.tasks.backend.BackendTasks;
 import snake.commun.messages.MsgAcheterFruit;
 import snake.commun.modeles.ModeleBoutique;
+import snake.commun.modeles.ModeleInventaire;
 
 public class GererFruits {
 
 	public static void creerTaches(BackendTasks tasks) {
 		tasks.taskGroup("GererFruits")
 				.waitsFor(model(ModeleBoutique.class))
+				.waitsFor(model(ModeleInventaire.class))
 				.contains(subTasks -> {
 					tacheInitialiserFruits(subTasks);
 					tacheAcheterFruit(subTasks);
@@ -30,12 +32,14 @@ public class GererFruits {
 	private static void tacheAcheterFruit(BackendTasks subTasks) {
 		subTasks.task("tacheAcheterFruit")
 				.waitsFor(model(ModeleBoutique.class))
+				.waitsFor(model(ModeleInventaire.class))
 				.waitsFor(message(MsgAcheterFruit.class))
 				.executes(inputs -> {
 					MsgAcheterFruit msgAcheterFruit = inputs.get(message(MsgAcheterFruit.class));
 					ModeleBoutique modeleBoutique = inputs.get(model(ModeleBoutique.class));
+					ModeleInventaire modeleInventaire = inputs.get(model(ModeleInventaire.class));
 
-					msgAcheterFruit.acheterFruit(modeleBoutique);
+					msgAcheterFruit.acheterFruit(modeleBoutique, modeleInventaire);
 				});
 	}
 }

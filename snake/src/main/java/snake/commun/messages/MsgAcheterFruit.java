@@ -2,6 +2,7 @@ package snake.commun.messages;
 
 import ca.ntro.app.messages.Message;
 import snake.commun.modeles.ModeleBoutique;
+import snake.commun.modeles.ModeleInventaire;
 
 public class MsgAcheterFruit extends Message<MsgAcheterFruit> {
 
@@ -16,7 +17,9 @@ public class MsgAcheterFruit extends Message<MsgAcheterFruit> {
         return this;
     }
 
-    public void acheterFruit(ModeleBoutique modeleBoutique) {
-        modeleBoutique.acheterFruit(nomFruit);
+    public void acheterFruit(ModeleBoutique modeleBoutique, ModeleInventaire modeleInventaire) {
+        int prix = modeleBoutique.getPrix(nomFruit);
+        modeleInventaire.ajouterArgent(-prix);
+        modeleInventaire.acheterFruit(nomFruit);
     }
 }

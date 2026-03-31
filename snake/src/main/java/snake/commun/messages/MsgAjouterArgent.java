@@ -2,13 +2,13 @@ package snake.commun.messages;
 
 import ca.ntro.app.Ntro;
 import ca.ntro.app.messages.Message;
-import snake.commun.modeles.ModeleBoutique;
+import snake.commun.modeles.ModeleInventaire;
 
 public class MsgAjouterArgent extends Message<MsgAjouterArgent> {
     private int montant;
 
-    public void ajouterArgent(ModeleBoutique modeleBoutique) {
-        modeleBoutique.ajouterArgent(montant);
+    public void ajouterArgent(ModeleInventaire modeleInventaire) {
+        modeleInventaire.ajouterArgent(montant);
     }
 
     public MsgAjouterArgent setMontant(int montant) {

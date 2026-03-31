@@ -10,6 +10,7 @@ import snake.commun.valeurs.*;
 public class DeclarationsSnake {
     public static void declarerModeles(ModelRegistrar registrar) {
         registrar.registerModel(ModeleBoutique.class);
+        registrar.registerModel(ModeleInventaire.class);
         registrar.registerValue(Fruit.class);
     }
 
