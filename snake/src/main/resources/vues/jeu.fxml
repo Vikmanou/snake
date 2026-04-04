@@ -26,9 +26,9 @@
             <Label fx:id="labelScoreFinal" styleClass="score-final"/>
 
             <Pane styleClass="espacement,moyen"/>
-            <Button fx:id="boutonRejouer" text="Rejouer"/>
+            <Button fx:id="boutonRejouer" text="%rejouer"/>
             <Pane styleClass="espacement,petit"/>
-            <Button fx:id="boutonAccueil" text="Accueil"/>
+            <Button fx:id="boutonAccueil" text="%accueil"/>
         </VBox>
     </StackPane>
 
