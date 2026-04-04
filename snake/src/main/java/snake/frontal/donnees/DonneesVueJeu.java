@@ -9,6 +9,7 @@ import snake.frontal.vues.VueJeu;
 public class DonneesVueJeu implements ViewData {
 
     private MondeSnake2d monde2d;
+    private boolean premiereFrame = true;
 
     public DonneesVueJeu(ModeleInventaire modeleInventaire) {
         monde2d = new MondeSnake2d(modeleInventaire);
@@ -19,7 +20,16 @@ public class DonneesVueJeu implements ViewData {
     }
 
     public void dessiner(VueJeu vueJeu) {
+        if (premiereFrame) {
+            premiereFrame = false;
+            vueJeu.reinitialiser();
+        }
+
         vueJeu.dessiner(monde2d);
+
+        if (monde2d.estMort()) {
+            vueJeu.afficherEcranMort(monde2d.getScore());
+        }
     }
 
     public void changerDirection(DirectionSnake direction) {

@@ -49,6 +49,22 @@ public class Serpent2d extends Object2dFx {
 		changerDirection(direction);
 	}
 
+	public boolean collideAvecMur() {
+		return getTopLeftX() <= 0
+				|| getTopLeftY() <= 0
+				|| getTopLeftX() + getWidth() >= getWorldWidth()
+				|| getTopLeftY() + getHeight() >= getWorldHeight();
+	}
+
+	public boolean collideAvecCorps() {
+		if (positionHistory.size() < 2 || longueur <= 3)
+			return false;
+
+		// TODO:
+
+		return false;
+	}
+
 	@Override
 	public void onTimePasses(double secondsElapsed) {
 		super.onTimePasses(secondsElapsed);

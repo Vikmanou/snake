@@ -4,18 +4,32 @@
 <?import javafx.scene.control.*?>
 <?import snake.frontal.controles.CanvasJeu?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-    fx:controller="snake.frontal.vues.VueJeu"
-    styleClass="conteneur,v,top">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+    fx:controller="snake.frontal.vues.VueJeu">
 
-    <HBox styleClass="navbar,conteneur,h,center-left">
-        <Button fx:id="boutonQuitter" text="%quitterJeu" styleClass="bouton"/>
-        <Pane HBox.hgrow="ALWAYS"/>
-        <Label fx:id="labelScore" styleClass="argent"/>
-    </HBox>
+    <VBox styleClass="conteneur,v,top">
 
-    <HBox styleClass="conteneur,h,center" VBox.vgrow="ALWAYS">
-        <CanvasJeu fx:id="canvas" styleClass="canvas" HBox.hgrow="ALWAYS"/>
-    </HBox>
+        <HBox styleClass="navbar,conteneur,h,center-left">
+            <Button fx:id="boutonQuitter" text="%quitterJeu" styleClass="bouton"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="labelScore" styleClass="argent"/>
+        </HBox>
 
-</VBox>
+        <HBox styleClass="conteneur,h,center" VBox.vgrow="ALWAYS">
+            <CanvasJeu fx:id="canvas" styleClass="canvas" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+    </VBox>
+
+    <StackPane fx:id="overlayMort" styleClass="overlay-mort" visible="false">
+        <VBox styleClass="vbox-mort,conteneur,v,center">
+            <Label fx:id="labelScoreFinal" styleClass="score-final"/>
+
+            <Pane styleClass="espacement,moyen"/>
+            <Button fx:id="boutonRejouer" text="Rejouer"/>
+            <Pane styleClass="espacement,petit"/>
+            <Button fx:id="boutonAccueil" text="Accueil"/>
+        </VBox>
+    </StackPane>
+
+</StackPane>

@@ -23,14 +23,27 @@ public class MondeSnake2d extends World2dFx {
 	}
 
 	private int score = 0;
+	private boolean estMort = false;
 
 	public int getScore() {
 		return score;
 	}
 
+	public boolean estMort() {
+		return estMort;
+	}
+
 	@Override
 	public void onTimePasses(double secondsElapsed) {
+		if (estMort)
+			return;
+
 		super.onTimePasses(secondsElapsed);
+
+		if (serpent.collideAvecMur() || serpent.collideAvecCorps()) {
+			estMort = true;
+			return;
+		}
 
 		if (fruit.estMange(serpent)) {
 			int tailleBonusFruit = fruit.getTailleBonusFruit();
@@ -45,6 +58,7 @@ public class MondeSnake2d extends World2dFx {
 	}
 
 	public void changerDirection(DirectionSnake direction) {
+		if (estMort) return;
 		serpent.changerDirection(direction);
 	}
 }
