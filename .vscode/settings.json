@@ -1,47 +1,66 @@
 {
-    "chat.disableAIFeatures": true,
-    "update.mode": "none",
-    "update.showReleaseNotes": false,
-    "update.enableWindowsBackgroundUpdates": false,
-    "java.dependency.packagePresentation": "hierarchical",
-    "java.compile.nullAnalysis.mode": "disabled",
-    "java.jdt.ls.vmargs":"-Dfile.encoding=utf-8 -Xms256m -Xmx2048m -XX:+UseG1GC",
-    "java.autobuild.enabled": false, 
-    "java.debug.settings.vmargs":"-Dfile.encoding=utf-8 -Xms256m -Xmx2048m -XX:+UseG1GC",
+	"chat.disableAIFeatures": false,
+	"update.mode": "none",
+	"update.showReleaseNotes": false,
+	"update.enableWindowsBackgroundUpdates": false,
+	"java.dependency.packagePresentation": "hierarchical",
+	"java.compile.nullAnalysis.mode": "disabled",
+	"java.jdt.ls.vmargs": "-Dfile.encoding=utf-8 -Xms256m -Xmx2048m -XX:+UseG1GC",
+	"java.autobuild.enabled": false,
+	"java.debug.settings.vmargs": "-Dfile.encoding=utf-8 -Xms256m -Xmx2048m -XX:+UseG1GC",
 	"java.compile.nullAnalysis.mode": "disabled",
 	"java.import.gradle.offline.enabled": true,
 	"java.inlayHints.parameterNames.enabled": "all",
-    "[java]": { "editor.defaultFormatter": "redhat.java" },
-    "editor.inlayHints.enabled": "offUnlessPressed",
-    "workbench.editor.closeOnFileDelete": true,
-    "workbench.editor.languageDetection": false,
-    "workbench.editor.empty.hint": "hidden",
-    "explorer.compactFolders": false,
-    "terminal.integrated.profiles.windows": {
-        "PowerShell": {"source": "PowerShell","icon": "terminal-powershell","args": ["-NoExit", "/c", "chcp 65001"]},
-        "Command Prompt": {"path": ["${env:windir}\\Sysnative\\cmd.exe","${env:windir}\\System32\\cmd.exe"], "args": ["/K", "chcp 65001"], "icon": "terminal-cmd" }
-    },
-
+	"[java]": {
+		"editor.defaultFormatter": "redhat.java"
+	},
+	"editor.inlayHints.enabled": "offUnlessPressed",
+	"workbench.editor.closeOnFileDelete": true,
+	"workbench.editor.languageDetection": false,
+	"workbench.editor.empty.hint": "hidden",
+	"explorer.compactFolders": false,
+	"terminal.integrated.profiles.windows": {
+		"PowerShell": {
+			"source": "PowerShell",
+			"icon": "terminal-powershell",
+			"args": [
+				"-NoExit",
+				"/c",
+				"chcp 65001"
+			]
+		},
+		"Command Prompt": {
+			"path": [
+				"${env:windir}\\Sysnative\\cmd.exe",
+				"${env:windir}\\System32\\cmd.exe"
+			],
+			"args": [
+				"/K",
+				"chcp 65001"
+			],
+			"icon": "terminal-cmd"
+		}
+	},
 	"files.exclude": {
-	    ".vscode" : true,
-	    ".git" : true,
-	    ".gradle" : true,
-	    "gradle" : true,
-	    "gradlew" : true,
-	    "gradlew.bat" : true,
-	    "**/.project" : true,
-	    "**/.classpath" : true,
-	    "**/.settings" : true,
-	    "**/bin" : true,
-	    "**/build" : true,
-	    "**/.gitinclude" : true,
-	    "**/_storage/options" : true,
-	    "buildSrc" : true,
-	    "libs" : true,
-	    ".gitignore" : true,
-	    "*.zip" : true,
-	    "scripts" : true,
-	    "vscode.sh" : true,
-	    "*.swp" : true
+		".vscode": true,
+		".git": true,
+		".gradle": true,
+		"gradle": true,
+		"gradlew": true,
+		"gradlew.bat": true,
+		"**/.project": true,
+		"**/.classpath": true,
+		"**/.settings": true,
+		"**/bin": true,
+		"**/build": true,
+		"**/.gitinclude": true,
+		"**/_storage/options": true,
+		"buildSrc": true,
+		"libs": true,
+		".gitignore": true,
+		"*.zip": true,
+		"scripts": true,
+		"vscode.sh": true,
+		"*.swp": true
 	}
 }
