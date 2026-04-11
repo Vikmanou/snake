@@ -50,10 +50,10 @@ public class Serpent2d extends Object2dFx {
 	}
 
 	public boolean collideAvecMur() {
-		return getTopLeftX() <= 0
-				|| getTopLeftY() <= 0
-				|| getTopLeftX() + getWidth() >= getWorldWidth()
-				|| getTopLeftY() + getHeight() >= getWorldHeight();
+		return getTopLeftX() < 0
+				|| getTopLeftY() < 0
+				|| getTopLeftX() + getWidth() > getWorldWidth()
+				|| getTopLeftY() + getHeight() > getWorldHeight();
 	}
 
 	public boolean collideAvecCorps() {
@@ -73,22 +73,6 @@ public class Serpent2d extends Object2dFx {
 			secondesRestantesAnimationGrow -= secondsElapsed;
 			if (secondesRestantesAnimationGrow < 0)
 				secondesRestantesAnimationGrow = 0;
-		}
-
-		if (getTopLeftX() <= 0) {
-			setTopLeftX(0);
-		}
-
-		if (getTopLeftY() <= 0) {
-			setTopLeftY(0);
-		}
-
-		if (getTopLeftX() + getWidth() >= getWorldWidth()) {
-			setTopLeftX(getWorldWidth() - getWidth());
-		}
-
-		if (getTopLeftY() + getHeight() >= getWorldHeight()) {
-			setTopLeftY(getWorldHeight() - getHeight());
 		}
 
 		enregistrerPosition();
