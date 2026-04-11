@@ -60,7 +60,26 @@ public class Serpent2d extends Object2dFx {
 		if (positionHistory.size() < 2 || longueur <= 3)
 			return false;
 
-		// TODO:
+		double teteX = getTopLeftX();
+		double teteY = getTopLeftY();
+
+		double skipDistance = TAILLE_SERPENT * 2.0;
+
+		double distanceParcourue = 0;
+		double[] prevPos = positionHistory.get(0);
+
+		for (int i = 1; i < positionHistory.size(); i++) {
+			double[] pos = positionHistory.get(i);
+			distanceParcourue += MathUtils.distance(prevPos[0], prevPos[1], pos[0], pos[1]);
+			prevPos = pos;
+
+			if (distanceParcourue < skipDistance)
+				continue;
+
+			if (MathUtils.distance(teteX, teteY, pos[0], pos[1]) < TAILLE_SERPENT * 0.5) {
+				return true;
+			}
+		}
 
 		return false;
 	}
