@@ -2,5 +2,7 @@ plugins {
     id 'ntro-project'
 }
 
-ntroProject.appClass = "snake.AppSnake"
-ntroProject.languages = ["fr","en"]
+ntroProject.appClass    = "snake.AppSnake"
+ntroProject.clientClass = "snake.ClientSnake"
+ntroProject.serverClass = "snake.ServeurSnake"
+ntroProject.languages   = ["fr","en"]

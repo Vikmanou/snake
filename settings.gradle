@@ -2,9 +2,6 @@ rootProject.name = 'racine4f5'
 
 include 'snake'
 
-/*include 'dep01'
-*/
-
 buildscript {
     repositories {
 	    mavenCentral()

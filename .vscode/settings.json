@@ -62,5 +62,6 @@
 		"scripts": true,
 		"vscode.sh": true,
 		"*.swp": true
-	}
+	},
+	"java.configuration.updateBuildConfiguration": "interactive"
 }

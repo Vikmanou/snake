@@ -58,7 +58,8 @@ public class MondeSnake2d extends World2dFx {
 	}
 
 	public void changerDirection(DirectionSnake direction) {
-		if (estMort) return;
+		if (estMort)
+			return;
 		serpent.changerDirection(direction);
 	}
 }
