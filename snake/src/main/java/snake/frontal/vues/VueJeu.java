@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import snake.commun.enums.DirectionSnake;
 import snake.commun.monde2d.MondeSnake2d;
 import snake.frontal.controles.CanvasJeu;
+import snake.commun.messages.MsgAjouterArgent;
 import snake.frontal.evenements.EvtAfficherVueAccueil;
 import snake.frontal.evenements.EvtAfficherVueJeu;
 import snake.frontal.evenements.EvtChangerDirection;
@@ -125,6 +126,10 @@ public class VueJeu extends ViewFx {
 		if (ecranMortAffiche)
 			return;
 		ecranMortAffiche = true;
+
+		Ntro.newMessage(MsgAjouterArgent.class)
+				.setMontant(score)
+				.send();
 
 		labelScoreFinal.setText("Score: " + score);
 		overlayMort.setVisible(true);

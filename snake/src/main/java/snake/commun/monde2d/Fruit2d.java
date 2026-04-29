@@ -74,6 +74,8 @@ public class Fruit2d extends Object2dFx {
 	}
 
 	public int getTailleBonusFruit() {
+		if (modeleInventaire == null) return 1;
+
 		for (var fruit : modeleInventaire.getFruitsAchetes()) {
 			if (fruit.getImage().equals(imageActuelle)) {
 				return fruit.getBonusTailleSerpent();

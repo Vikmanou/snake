@@ -9,6 +9,8 @@
 
     <Label text="SNAKE" styleClass="titre-jeu"/>
 
+    <Label fx:id="labelMeilleurScore" text="Meilleur score: ---" styleClass="sous-titre"/>
+
     <Pane styleClass="espacement,moyen"/>
 
     <Button fx:id="boutonJouer" text="%jouer"/>

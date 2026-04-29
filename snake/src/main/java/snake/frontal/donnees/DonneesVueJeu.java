@@ -15,6 +15,10 @@ public class DonneesVueJeu implements ViewData {
         monde2d = new MondeSnake2d(modeleInventaire);
     }
 
+    public void setModeleInventaire(ModeleInventaire modeleInventaire) {
+        monde2d.setModeleInventaire(modeleInventaire);
+    }
+
     public void onTimePasses(double secondsElapsed) {
         monde2d.onTimePasses(secondsElapsed);
     }

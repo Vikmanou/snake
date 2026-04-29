@@ -22,6 +22,10 @@ public class MondeSnake2d extends World2dFx {
 		fruit.respawn(serpent);
 	}
 
+	public void setModeleInventaire(ModeleInventaire modeleInventaire) {
+		fruit.setModeleInventaire(modeleInventaire);
+	}
+
 	private int score = 0;
 	private boolean estMort = false;
 
