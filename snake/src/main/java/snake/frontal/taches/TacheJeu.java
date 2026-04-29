@@ -2,11 +2,13 @@ package snake.frontal.taches;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
 
+import ca.ntro.app.frontend.Tick;
 import ca.ntro.app.tasks.frontend.FrontendTasks;
 import snake.commun.modeles.ModeleInventaire;
 import snake.frontal.donnees.DonneesVueJeu;
 import snake.frontal.evenements.EvtChangerDirection;
 import snake.frontal.vues.VueJeu;
+import ca.ntro.app.modified.Modified;
 
 public class TacheJeu {
 
@@ -33,8 +35,8 @@ public class TacheJeu {
                 .waitsFor(created(DonneesVueJeu.class))
                 .waitsFor(modified(ModeleInventaire.class))
                 .executes(inputs -> {
-                    var donneesVueJeu = inputs.get(created(DonneesVueJeu.class));
-                    var modeleInventaire = inputs.get(modified(ModeleInventaire.class));
+                    DonneesVueJeu donneesVueJeu = inputs.get(created(DonneesVueJeu.class));
+                    Modified<ModeleInventaire> modeleInventaire = inputs.get(modified(ModeleInventaire.class));
                     donneesVueJeu.setModeleInventaire(modeleInventaire.currentValue());
                 });
     }
@@ -46,9 +48,9 @@ public class TacheJeu {
                 .waitsFor(created(DonneesVueJeu.class))
                 .waitsFor(created(VueJeu.class))
                 .executes(inputs -> {
-                    var vueJeu = inputs.get(created(VueJeu.class));
-                    var donneesVueJeu = inputs.get(created(DonneesVueJeu.class));
-                    var tick = inputs.get(clock().nextTick());
+                    VueJeu vueJeu = inputs.get(created(VueJeu.class));
+                    DonneesVueJeu donneesVueJeu = inputs.get(created(DonneesVueJeu.class));
+                    Tick tick = inputs.get(clock().nextTick());
 
                     donneesVueJeu.onTimePasses(tick.elapsedTime());
                     donneesVueJeu.dessiner(vueJeu);
@@ -61,8 +63,8 @@ public class TacheJeu {
                 .waitsFor(created(DonneesVueJeu.class))
                 .waitsFor(event(EvtChangerDirection.class))
                 .executes(inputs -> {
-                    var evt = inputs.get(event(EvtChangerDirection.class));
-                    var donneesVueJeu = inputs.get(created(DonneesVueJeu.class));
+                    EvtChangerDirection evt = inputs.get(event(EvtChangerDirection.class));
+                    DonneesVueJeu donneesVueJeu = inputs.get(created(DonneesVueJeu.class));
 
                     evt.changerDirection(donneesVueJeu);
                 });

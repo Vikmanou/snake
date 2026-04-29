@@ -8,6 +8,7 @@ import ca.ntro.app.world2d.Object2dFx;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import snake.commun.modeles.ModeleInventaire;
+import snake.commun.valeurs.Fruit;
 
 public class Fruit2d extends Object2dFx {
 
@@ -63,7 +64,7 @@ public class Fruit2d extends Object2dFx {
 
 		if (modeleInventaire != null) {
 			List<String> nomsImages = new java.util.ArrayList<>();
-			for (var fruit : modeleInventaire.getFruitsAchetes()) {
+			for (Fruit fruit : modeleInventaire.getFruitsAchetes()) {
 				nomsImages.add(fruit.getImage());
 			}
 
@@ -74,9 +75,10 @@ public class Fruit2d extends Object2dFx {
 	}
 
 	public int getTailleBonusFruit() {
-		if (modeleInventaire == null) return 1;
+		if (modeleInventaire == null)
+			return 1;
 
-		for (var fruit : modeleInventaire.getFruitsAchetes()) {
+		for (Fruit fruit : modeleInventaire.getFruitsAchetes()) {
 			if (fruit.getImage().equals(imageActuelle)) {
 				return fruit.getBonusTailleSerpent();
 			}

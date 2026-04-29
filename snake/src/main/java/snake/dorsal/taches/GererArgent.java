@@ -20,8 +20,8 @@ public class GererArgent {
                 .waitsFor(model(ModeleInventaire.class))
                 .waitsFor(message(MsgAjouterArgent.class))
                 .executes(inputs -> {
-                    var msgAjouterArgent = inputs.get(message(MsgAjouterArgent.class));
-                    var modeleInventaire = inputs.get(model(ModeleInventaire.class));
+                    MsgAjouterArgent msgAjouterArgent = inputs.get(message(MsgAjouterArgent.class));
+                    ModeleInventaire modeleInventaire = inputs.get(model(ModeleInventaire.class));
 
                     msgAjouterArgent.ajouterArgent(modeleInventaire);
                 });

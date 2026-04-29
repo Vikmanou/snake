@@ -5,6 +5,7 @@ import snake.frontal.vues.VueBoutique;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
 import ca.ntro.app.tasks.frontend.FrontendTasks;
+import ca.ntro.app.modified.Modified;
 
 public class AfficherItemsBoutique {
     public static void creerTaches(FrontendTasks tasks) {
@@ -20,8 +21,8 @@ public class AfficherItemsBoutique {
                 .waitsFor(modified(ModeleBoutique.class))
                 .waitsFor(created(VueBoutique.class))
                 .executes(inputs -> {
-                    var modeleBoutique = inputs.get(modified(ModeleBoutique.class));
-                    var vueBoutique = inputs.get(created(VueBoutique.class));
+                    Modified<ModeleBoutique> modeleBoutique = inputs.get(modified(ModeleBoutique.class));
+                    VueBoutique vueBoutique = inputs.get(created(VueBoutique.class));
 
                     modeleBoutique.currentValue().afficherFruits(vueBoutique);
                 });

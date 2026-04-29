@@ -21,8 +21,8 @@ public class GererScore {
                 .waitsFor(model(ModeleScore.class))
                 .waitsFor(message(MsgSauvegarderScore.class))
                 .executes(inputs -> {
-                    var msgSauvegarderScore = inputs.get(message(MsgSauvegarderScore.class));
-                    var modeleScore = inputs.get(model(ModeleScore.class));
+                    MsgSauvegarderScore msgSauvegarderScore = inputs.get(message(MsgSauvegarderScore.class));
+                    ModeleScore modeleScore = inputs.get(model(ModeleScore.class));
 
                     msgSauvegarderScore.sauvegarderScore(modeleScore);
                 });
