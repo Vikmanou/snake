@@ -10,6 +10,7 @@ public class DorsalDepart extends LocalBackendNtro {
     public void createTasks(BackendTasks tasks) {
         GererArgent.creerTaches(tasks);
         GererFruits.creerTaches(tasks);
+        GererScore.creerTaches(tasks);
     }
 
 }

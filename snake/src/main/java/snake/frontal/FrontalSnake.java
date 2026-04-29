@@ -21,6 +21,7 @@ public class FrontalSnake implements FrontendFx {
         GererArgent.creerTaches(tasks);
         AfficherItemsBoutique.creerTaches(tasks);
         TacheJeu.creerTaches(tasks);
+        AfficherMeilleurScore.creerTaches(tasks);
     }
 
     @Override

@@ -14,6 +14,7 @@ import snake.commun.enums.DirectionSnake;
 import snake.commun.monde2d.MondeSnake2d;
 import snake.frontal.controles.CanvasJeu;
 import snake.commun.messages.MsgAjouterArgent;
+import snake.commun.messages.MsgSauvegarderScore;
 import snake.frontal.evenements.EvtAfficherVueAccueil;
 import snake.frontal.evenements.EvtAfficherVueJeu;
 import snake.frontal.evenements.EvtChangerDirection;
@@ -129,6 +130,10 @@ public class VueJeu extends ViewFx {
 
 		Ntro.newMessage(MsgAjouterArgent.class)
 				.setMontant(score)
+				.send();
+
+		Ntro.newMessage(MsgSauvegarderScore.class)
+				.setScore(score)
 				.send();
 
 		labelScoreFinal.setText("Score: " + score);

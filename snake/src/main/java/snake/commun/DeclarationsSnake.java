@@ -11,12 +11,14 @@ public class DeclarationsSnake {
     public static void declarerModeles(ModelRegistrar registrar) {
         registrar.registerModel(ModeleBoutique.class);
         registrar.registerModel(ModeleInventaire.class);
+        registrar.registerModel(ModeleScore.class);
         registrar.registerValue(Fruit.class);
     }
 
     public static void declarerMessages(MessageRegistrar registrar) {
         registrar.registerMessage(MsgAjouterArgent.class);
         registrar.registerMessage(MsgAcheterFruit.class);
+        registrar.registerMessage(MsgSauvegarderScore.class);
     }
 
     public static void declarerServeur(ServerRegistrar registrar) {

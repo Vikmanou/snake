@@ -34,4 +34,8 @@ public class VueAccueil extends ViewFx {
         });
     }
 
+    public void setMeilleurScore(int score) {
+        labelMeilleurScore.setText("Meilleur score: " + score);
+    }
+
 }
