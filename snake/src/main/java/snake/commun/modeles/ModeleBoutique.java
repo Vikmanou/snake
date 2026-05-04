@@ -8,6 +8,7 @@ import ca.ntro.app.models.WatchJson;
 import ca.ntro.app.models.WriteObjectGraph;
 import snake.commun.valeurs.Fruit;
 import snake.frontal.vues.VueBoutique;
+import snake.commun.modeles.ModeleInventaire;
 
 public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
 	private List<Fruit> fruits = new ArrayList<>();
@@ -28,14 +29,15 @@ public class ModeleBoutique implements Model, WatchJson, WriteObjectGraph {
 		return fruit != null ? fruit.getPrix() : 0;
 	}
 
-	public void afficherFruits(VueBoutique vueBoutique) {
+	public void afficherFruits(VueBoutique vueBoutique, ModeleInventaire modeleInventaire) {
 		vueBoutique.viderFruits();
 
 		fruits.sort((f1, f2) -> Integer.compare(f1.getOrdreDansBoutique(), f2.getOrdreDansBoutique()));
 
 		for (Fruit fruit : fruits) {
 			if (fruit.getMontrerDansLaBoutique()) {
-				vueBoutique.ajouterItemBoutique(fruit.getNom(), fruit.getPrix());
+				boolean estAchete = modeleInventaire.estFruitAchete(fruit.getNom());
+				vueBoutique.ajouterItemBoutique(fruit.getNom(), fruit.getPrix(), estAchete);
 			}
 		}
 	}

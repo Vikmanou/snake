@@ -8,36 +8,44 @@ import javafx.scene.control.Label;
 import snake.commun.messages.MsgAcheterFruit;
 
 public class ItemBoutique extends ViewFragmentFx {
-    @FXML
-    private Label nomFruit;
+	@FXML
+	private Label nomFruit;
 
-    @FXML
-    private Label prixFruit;
+	@FXML
+	private Label prixFruit;
 
-    @FXML
-    private Button boutonAcheter;
+	@FXML
+	private Button boutonAcheter;
 
-    private String nom;
+	private String nom;
 
-    @Override
-    public void initialize() {
-        Ntro.assertNotNull(nomFruit);
-        Ntro.assertNotNull(prixFruit);
-        Ntro.assertNotNull(boutonAcheter);
+	@Override
+	public void initialize() {
+		Ntro.assertNotNull(nomFruit);
+		Ntro.assertNotNull(prixFruit);
+		Ntro.assertNotNull(boutonAcheter);
 
-        boutonAcheter.setOnAction(evtFx -> {
-            Ntro.newMessage(MsgAcheterFruit.class)
-                    .setNomFruit(nom)
-                    .send();
-        });
-    }
+		boutonAcheter.setOnAction(evtFx -> {
+			Ntro.newMessage(MsgAcheterFruit.class)
+					.setNomFruit(nom)
+					.send();
+		});
+	}
 
-    public void setNomFruit(String nom) {
-        this.nom = nom;
-        nomFruit.setText(nom);
-    }
+	public void setNomFruit(String nom) {
+		this.nom = nom;
+		nomFruit.setText(nom);
+	}
 
-    public void setPrixFruit(int prix) {
-        prixFruit.setText(prix + "$");
-    }
+	public void setPrixFruit(int prix) {
+		prixFruit.setText(prix + "$");
+	}
+
+	public void setAchetee(boolean achetee) {
+		boutonAcheter.setDisable(achetee);
+		if (achetee) {
+			boutonAcheter.setText("Acheté");
+			boutonAcheter.getStyleClass().add("bouton-achete");
+		}
+	}
 }

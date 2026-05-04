@@ -211,3 +211,15 @@ Button:pressed {
 	-fx-font-weight: bold;
 	-fx-text-fill: #fbbf24;
 }
+
+.bouton-achete {
+	-fx-border-color: #334155;
+	-fx-text-fill: #475569;
+}
+
+.bouton-achete:disabled {
+	-fx-opacity: 1;
+	-fx-border-color: #334155;
+	-fx-text-fill: #475569;
+	-fx-background-color: transparent;
+}

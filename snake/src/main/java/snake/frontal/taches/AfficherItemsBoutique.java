@@ -1,6 +1,7 @@
 package snake.frontal.taches;
 
 import snake.commun.modeles.ModeleBoutique;
+import snake.commun.modeles.ModeleInventaire;
 import snake.frontal.vues.VueBoutique;
 
 import static ca.ntro.app.tasks.frontend.FrontendTasks.*;
@@ -19,12 +20,14 @@ public class AfficherItemsBoutique {
     public static void afficherFruits(FrontendTasks tasks) {
         tasks.task("afficherFruits")
                 .waitsFor(modified(ModeleBoutique.class))
+                .waitsFor(modified(ModeleInventaire.class))
                 .waitsFor(created(VueBoutique.class))
                 .executes(inputs -> {
                     Modified<ModeleBoutique> modeleBoutique = inputs.get(modified(ModeleBoutique.class));
+                    Modified<ModeleInventaire> modeleInventaire = inputs.get(modified(ModeleInventaire.class));
                     VueBoutique vueBoutique = inputs.get(created(VueBoutique.class));
 
-                    modeleBoutique.currentValue().afficherFruits(vueBoutique);
+                    modeleBoutique.currentValue().afficherFruits(vueBoutique, modeleInventaire.currentValue());
                 });
 
     }
