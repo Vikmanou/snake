@@ -6,7 +6,7 @@ The player controls a snake that eats fruits to grow and accumulate points. Frui
 
 ## Gameplay
 
-https://github.com/Vikmanou/snake/raw/main/assets/gameplay.webm
+<video src="assets/gameplay.webm" controls muted loop width="640"></video>
 
 ## Tech stack
 
