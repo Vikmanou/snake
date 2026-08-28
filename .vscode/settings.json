@@ -42,7 +42,7 @@
 		}
 	},
 	"files.exclude": {
-		".vscode": true,
+		".vscode": false,
 		".git": true,
 		".gradle": true,
 		"gradle": true,
@@ -57,7 +57,8 @@
 		"**/_storage/options": true,
 		"buildSrc": true,
 		"libs": true,
-		".gitignore": true,
+		".gitignore": false,
+		"assets": true,
 		"*.zip": true,
 		"scripts": true,
 		"vscode.sh": true,
